@@ -34,6 +34,11 @@ Please set .textlinrc:
             let src = new StructuredSource(text);
             let makeChangeSet = config.makeChangeSet(null, text);
             makeChangeSet.forEach(function (changeSet) {
+                // Avoid accidental match(ignore case, expected contain actual pattern)
+                var expectedQuery = new RegExp('^' + changeSet.expected);
+                if (expectedQuery.test(text.slice(changeSet.index))) {
+                    return;
+                }
                 var position = src.indexToPosition(changeSet.index);
                 // line, column
                 context.report(node, new context.RuleError(changeSet.matches[0] + " => " + changeSet.expected, {

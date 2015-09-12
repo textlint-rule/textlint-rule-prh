@@ -47,6 +47,11 @@ rules:
       - from: 日経ソフトウエア
         to:   日経ソフトウエア
 
+  - expected: ベンダー
+    pattern: ベンダ
+    specs:
+      - from: ベンダ
+        to: ベンダー
 # 単語境界の区別
   - expected: js
   # pattern: "/\b[JjＪｊ][SsＳｓ]\b/g" # と等価 \b が前後に付与される
