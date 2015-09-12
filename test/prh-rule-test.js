@@ -9,7 +9,7 @@ describe("prh-rule-test", function () {
             "prh": rule
         }, {
             "prh": {
-                "configPaths": [__dirname + "/fixtures/rule.yaml"]
+                "rulePaths": [__dirname + "/fixtures/rule.yaml"]
             }
         });
     });

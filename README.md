@@ -16,7 +16,7 @@ This rule check the spell by used with `rule.yaml`.
 {
     "rules": {
         "prh": {
-            "configPaths" :["path/to/rule.yaml"]
+            "rulePaths" :["path/to/rule.yaml"]
         }
     }
 }
