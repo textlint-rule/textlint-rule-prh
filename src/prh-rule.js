@@ -39,11 +39,17 @@ Please set .textlinrc:
                 if (expectedQuery.test(text.slice(changeSet.index))) {
                     return;
                 }
+                /*
+                line start with 1
+                column start with 0
+
+                adjust position => line -1, column + 1
+                 */
                 var position = src.indexToPosition(changeSet.index);
                 // line, column
                 context.report(node, new context.RuleError(changeSet.matches[0] + " => " + changeSet.expected, {
-                    line: position.line - 1,// == start with 0
-                    column: position.column// == start with 0
+                    line: position.line - 1,
+                    column: position.column + 1
                 }));
             });
         }

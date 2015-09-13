@@ -21,7 +21,7 @@ describe("prh-rule-test", function () {
             var result = textlint.lintMarkdown("テストjquery");
             assert(result.messages.length > 0);
             assert(result.messages[0].line === 1);
-            assert(result.messages[0].column === 3);
+            assert(result.messages[0].column === 4);
         });
     });
     context("when match word and s/Web/Web/i pattern", function () {
