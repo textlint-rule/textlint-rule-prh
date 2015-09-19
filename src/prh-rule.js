@@ -36,6 +36,7 @@ Please set .textlinrc:
             makeChangeSet.forEach(function (changeSet) {
                 // Avoid accidental match(ignore case, expected contain actual pattern)
                 var expectedQuery = new RegExp('^' + changeSet.expected);
+                // | ----[match------|
                 var slicedText = text.slice(changeSet.index);
                 if (expectedQuery.test(slicedText)) {
                     return;
@@ -47,7 +48,9 @@ Please set .textlinrc:
                 adjust position => line -1, column + 1
                  */
                 var position = src.indexToPosition(changeSet.index);
-                var expected = slicedText.replace(changeSet.pattern, changeSet.expected);
+                // | ----[match]------|
+                var matchedText = slicedText.slice(0, changeSet.matches[0].length);
+                var expected = matchedText.replace(changeSet.pattern, changeSet.expected);
                 // line, column
                 context.report(node, new context.RuleError(changeSet.matches[0] + " => " + expected, {
                     line: position.line - 1,

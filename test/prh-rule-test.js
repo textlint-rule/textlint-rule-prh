@@ -43,7 +43,7 @@ describe("prh-rule-test", function () {
         // expected word contain actual word.
         // s/ベンダ/ベンダー/ のようにexpectedがpatternを包含している場合のexpectedを除外
         it("should convert expected", function () {
-            var result = textlint.lintMarkdown("広義のソフトウエア");
+            var result = textlint.lintMarkdown("広義のソフトウエアについて");
             assert(result.messages.length > 0);
             var message = result.messages[0].message;
             assert.equal(message, "のソフトウエア => のソフトウェア");
