@@ -49,5 +49,4 @@ describe("prh-rule-test", function () {
             assert.equal(message, "のソフトウエア => のソフトウェア");
         });
     });
-
 });

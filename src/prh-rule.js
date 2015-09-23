@@ -1,8 +1,9 @@
 // LICENSE : MIT
 "use strict";
 import {RuleHelper} from "textlint-rule-helper";
-import StructuredSource from "structured-source"
+import StructuredSource from "structured-source";
 import prh from "prh";
+import path from "path";
 export default function (context, options) {
     if (typeof options === "undefined" || typeof options.rulePaths === "undefined") {
         throw new Error(`textlint-rule-prh require Rule Options.
@@ -16,12 +17,15 @@ Please set .textlinrc:
 }
 `);
     }
+    var configFilePath = context.config ? context.config.configFile : null;
+    // .textlinrc directory
+    var textlintRCDir = configFilePath ? path.dirname(configFilePath) : process.cwd();
     let helper = new RuleHelper(context);
     let {Syntax, getSource, report, RuleError} = context;
     var rulePaths = options.rulePaths;
-    var config = prh.fromYAMLFilePath(rulePaths[0]);
-    rulePaths.splice(1).forEach(function (path) {
-        var c = prh.fromYAMLFilePath(path);
+    var config = prh.fromYAMLFilePath(path.resolve(textlintRCDir, rulePaths[0]));
+    rulePaths.splice(1).forEach(function (rulePath) {
+        var c = prh.fromYAMLFilePath(path.resolve(textlintRCDir, rulePath));
         config.merge(c);
     });
     return {
