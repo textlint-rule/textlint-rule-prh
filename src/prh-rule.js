@@ -34,11 +34,13 @@ Please set .textlinrc:
             let src = new StructuredSource(text);
             let makeChangeSet = config.makeChangeSet(null, text);
             makeChangeSet.forEach(function (changeSet) {
-                // Avoid accidental match(ignore case, expected contain actual pattern)
-                var expectedQuery = new RegExp('^' + changeSet.expected);
-                // | ----[match------|
+                // | ----[match]------
                 var slicedText = text.slice(changeSet.index);
-                if (expectedQuery.test(slicedText)) {
+                // | ----[match------|
+                var matchedText = slicedText.slice(0, changeSet.matches[0].length);
+                var expected = matchedText.replace(changeSet.pattern, changeSet.expected);
+                // Avoid accidental match(ignore case, expected contain actual pattern)
+                if (slicedText.indexOf(expected) === 0) {
                     return;
                 }
                 /*
@@ -48,11 +50,9 @@ Please set .textlinrc:
                 adjust position => line -1, column + 1
                  */
                 var position = src.indexToPosition(changeSet.index);
-                // | ----[match]------|
-                var matchedText = slicedText.slice(0, changeSet.matches[0].length);
-                var expected = matchedText.replace(changeSet.pattern, changeSet.expected);
+
                 // line, column
-                context.report(node, new context.RuleError(changeSet.matches[0] + " => " + expected, {
+                context.report(node, new RuleError(changeSet.matches[0] + " => " + expected, {
                     line: position.line - 1,
                     column: position.column + 1
                 }));

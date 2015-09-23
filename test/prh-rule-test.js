@@ -24,7 +24,7 @@ describe("prh-rule-test", function () {
             assert(result.messages[0].column === 4);
         });
     });
-    context("when match word and s/Web/Web/i pattern", function () {
+    context("when match word but s/Web/Web/i pattern", function () {
         // fix ignore (the) case
         it("should not report", function () {
             var result = textlint.lintMarkdown("jQuery");
