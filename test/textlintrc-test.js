@@ -11,7 +11,7 @@ describe(".textlinrc test", function () {
                 "prh": rule
             }, {
                 "prh": {
-                    "rulePaths": ["./rule.yaml"]
+                    "rulePaths": [path.join(__dirname, "fixtures", "rule.yaml")]
                 }
             }, {
                 "configFile": path.join(__dirname, "fixtures", ".textlintrc")

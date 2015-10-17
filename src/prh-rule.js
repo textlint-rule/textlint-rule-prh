@@ -51,14 +51,14 @@ Please set .textlinrc:
                 line start with 1
                 column start with 0
 
-                adjust position => line -1, column + 1
+                adjust position => line -1, column +0
                  */
                 var position = src.indexToPosition(changeSet.index);
 
                 // line, column
                 context.report(node, new RuleError(changeSet.matches[0] + " => " + expected, {
                     line: position.line - 1,
-                    column: position.column + 1
+                    column: position.column
                 }));
             });
         }
