@@ -32,12 +32,12 @@
     "prh"
   ],
   "dependencies": {
-    "prh": "^0.7.0",
+    "prh": "^0.8.0",
     "structured-source": "^3.0.2",
     "textlint-rule-helper": "^1.1.3"
   },
   "devDependencies": {
-    "babel": "^5.8.23",
+    "babel": "^6.0.14",
     "espower-babel": "^3.3.0",
     "mocha": "^2.3.2",
     "power-assert": "^1.0.0",
