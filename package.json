@@ -22,8 +22,8 @@
     "test": "test"
   },
   "scripts": {
-    "build": "babel src --out-dir lib --source-maps",
-    "watch": "babel src --out-dir lib --watch --source-maps",
+    "build": "babel --preset es2015 src --out-dir lib --source-maps",
+    "watch": "babel --preset es2015 src --out-dir lib --watch --source-maps",
     "prepublish": "npm run --if-present build",
     "test": "mocha"
   },
@@ -32,12 +32,13 @@
     "prh"
   ],
   "dependencies": {
-    "prh": "^0.7.0",
+    "babel-preset-es2015": "^6.0.15",
+    "prh": "^0.8.0",
     "structured-source": "^3.0.2",
     "textlint-rule-helper": "^1.1.3"
   },
   "devDependencies": {
-    "babel": "^5.8.23",
+    "babel-cli": "^6.0.14",
     "espower-babel": "^3.3.0",
     "mocha": "^2.3.2",
     "power-assert": "^1.0.0",

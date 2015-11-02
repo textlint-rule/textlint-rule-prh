@@ -37,7 +37,7 @@ Please set .textlinrc:
             // to get position from index
             let src = new StructuredSource(text);
             let makeChangeSet = config.makeChangeSet(null, text);
-            makeChangeSet.forEach(function (changeSet) {
+            makeChangeSet.diffs.forEach(function (changeSet) {
                 // | ----[match]------
                 var slicedText = text.slice(changeSet.index);
                 // | ----[match------|
