@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/azu/textlint-rule-prh/issues"
   },
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "textlint rule for prh.",
   "main": "lib/prh-rule.js",
   "files": [
