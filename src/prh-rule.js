@@ -22,9 +22,9 @@ Please set .textlinrc:
     var textlintRCDir = configFilePath ? path.dirname(configFilePath) : process.cwd();
     let helper = new RuleHelper(context);
     let {Syntax, getSource, report, RuleError} = context;
-    var rulePaths = options.rulePaths;
+    var rulePaths = options.rulePaths.slice();
     var config = prh.fromYAMLFilePath(path.resolve(textlintRCDir, rulePaths[0]));
-    rulePaths.splice(1).forEach(function (rulePath) {
+    rulePaths.slice(1).forEach(function (rulePath) {
         var c = prh.fromYAMLFilePath(path.resolve(textlintRCDir, rulePath));
         config.merge(c);
     });
@@ -56,7 +56,7 @@ Please set .textlinrc:
                 var position = src.indexToPosition(changeSet.index);
 
                 // line, column
-                context.report(node, new RuleError(changeSet.matches[0] + " => " + expected, {
+                report(node, new RuleError(changeSet.matches[0] + " => " + expected, {
                     line: position.line - 1,
                     column: position.column
                 }));
