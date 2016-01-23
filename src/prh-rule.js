@@ -4,8 +4,38 @@ import {RuleHelper} from "textlint-rule-helper";
 import StructuredSource from "structured-source";
 import prh from "prh";
 import path from "path";
-export default function (context, options) {
-    if (typeof options === "undefined" || typeof options.rulePaths === "undefined") {
+function createPrhEngine(rulePaths, baseDir) {
+    if (rulePaths.length === 0) {
+        return null;
+    }
+    const prhEngine = prh.fromYAMLFilePath(path.resolve(baseDir, rulePaths[0]));
+    rulePaths.slice(1).forEach(ruleFilePath => {
+        const config = prh.fromYAMLFilePath(path.resolve(baseDir, ruleFilePath));
+        prhEngine.merge(config);
+    });
+    return prhEngine;
+}
+function createPrhEngineFromContents(yamlContents) {
+    if (yamlContents.length === 0) {
+        return null;
+    }
+    const prhEngine = prh.fromYAML(null, yamlContents[0]);
+    yamlContents.slice(1).forEach(content => {
+        const config = prh.fromYAML(null, content);
+        prhEngine.merge(config);
+    });
+    return prhEngine;
+}
+function mergePrh(...engines) {
+    const engines_ = engines.filter(engine => !!engine);
+    const mainEngine = engines_[0];
+    engines_.slice(1).forEach(engine => {
+        mainEngine.merge(engine);
+    });
+    return mainEngine;
+}
+export default function (context, options = {}) {
+    if (typeof options.ruleContents === "undefined" && typeof options.rulePaths === "undefined") {
         throw new Error(`textlint-rule-prh require Rule Options.
 Please set .textlinrc:
 {
@@ -17,17 +47,18 @@ Please set .textlinrc:
 }
 `);
     }
-    var configFilePath = context.config ? context.config.configFile : null;
+    const textlintRcFilePath = context.config ? context.config.configFile : null;
     // .textlinrc directory
-    var textlintRCDir = configFilePath ? path.dirname(configFilePath) : process.cwd();
-    let helper = new RuleHelper(context);
-    let {Syntax, getSource, report, RuleError} = context;
-    var rulePaths = options.rulePaths.slice();
-    var config = prh.fromYAMLFilePath(path.resolve(textlintRCDir, rulePaths[0]));
-    rulePaths.slice(1).forEach(function (rulePath) {
-        var c = prh.fromYAMLFilePath(path.resolve(textlintRCDir, rulePath));
-        config.merge(c);
-    });
+    const textlintRCDir = textlintRcFilePath ? path.dirname(textlintRcFilePath) : process.cwd();
+    // create prh config
+    const rulePaths = options.rulePaths || [];
+    const ruleContents = options.ruleContents || [];
+    // yaml file + yaml contents
+    const prhEngineContent = createPrhEngineFromContents(ruleContents);
+    const prhEngineFiles = createPrhEngine(rulePaths, textlintRCDir);
+    const prhEngine = mergePrh(prhEngineFiles, prhEngineContent);
+    const helper = new RuleHelper(context);
+    const {Syntax, getSource, report, RuleError} = context;
     return {
         [Syntax.Str](node){
             if (helper.isChildNode(node, [Syntax.Link, Syntax.Image, Syntax.BlockQuote, Syntax.Emphasis])) {
@@ -36,7 +67,7 @@ Please set .textlinrc:
             let text = getSource(node);
             // to get position from index
             let src = new StructuredSource(text);
-            let makeChangeSet = config.makeChangeSet(null, text);
+            let makeChangeSet = prhEngine.makeChangeSet(null, text);
             makeChangeSet.diffs.forEach(function (changeSet) {
                 // | ----[match]------
                 var slicedText = text.slice(changeSet.index);
