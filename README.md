@@ -2,7 +2,7 @@
 
 [textlint](https://github.com/azu/textlint "textlint") rule for [vvakame/prh](https://github.com/vvakame/prh "vvakame/prh").
 
-This rule check the spell by used with `rule.yaml`.
+This rule check the spell by used with `prh.yml`.
 
 ## Installation
 
@@ -16,13 +16,15 @@ This rule check the spell by used with `rule.yaml`.
 {
     "rules": {
         "prh": {
-            "rulePaths" :["path/to/rule.yaml"]
+            "rulePaths" :["path/to/prh.yml"]
         }
     }
 }
 ```
 
-### What is rule.yaml?
+`rulePaths` : path to YAML file.
+
+### What is prh.yml?
 
 Please See [vvakame/prh](https://github.com/vvakame/prh "vvakame/prh").
 
