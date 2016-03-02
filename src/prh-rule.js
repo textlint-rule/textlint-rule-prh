@@ -34,7 +34,7 @@ function mergePrh(...engines) {
     });
     return mainEngine;
 }
-export default function (context, options = {}) {
+const assertOptions = (options) => {
     if (typeof options.ruleContents === "undefined" && typeof options.rulePaths === "undefined") {
         throw new Error(`textlint-rule-prh require Rule Options.
 Please set .textlinrc:
@@ -47,6 +47,9 @@ Please set .textlinrc:
 }
 `);
     }
+};
+function reporter(context, options = {}) {
+    assertOptions(options);
     const textlintRcFilePath = context.config ? context.config.configFile : null;
     // .textlinrc directory
     const textlintRCDir = textlintRcFilePath ? path.dirname(textlintRcFilePath) : process.cwd();
@@ -58,7 +61,7 @@ Please set .textlinrc:
     const prhEngineFiles = createPrhEngine(rulePaths, textlintRCDir);
     const prhEngine = mergePrh(prhEngineFiles, prhEngineContent);
     const helper = new RuleHelper(context);
-    const {Syntax, getSource, report, RuleError} = context;
+    const {Syntax, getSource, report, fixer, RuleError} = context;
     return {
         [Syntax.Str](node){
             if (helper.isChildNode(node, [Syntax.Link, Syntax.Image, Syntax.BlockQuote, Syntax.Emphasis])) {
@@ -87,11 +90,16 @@ Please set .textlinrc:
                 var position = src.indexToPosition(changeSet.index);
 
                 // line, column
-                report(node, new RuleError(changeSet.matches[0] + " => " + expected, {
+                report(node, new RuleError(matchedText + " => " + expected, {
                     line: position.line - 1,
-                    column: position.column
+                    column: position.column,
+                    fix: fixer.replaceTextRange([changeSet.index, changeSet.index + matchedText.length], expected)
                 }));
             });
         }
     }
+}
+export default {
+    linter: reporter,
+    fixer: reporter
 }
