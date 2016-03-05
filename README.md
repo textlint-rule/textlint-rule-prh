@@ -1,4 +1,4 @@
-# textlint-rule-prh [![Build Status](https://travis-ci.org/azu/textlint-rule-prh.svg?branch=master)](https://travis-ci.org/azu/textlint-rule-prh)
+# textlint-rule-prh [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) [![Build Status](https://travis-ci.org/azu/textlint-rule-prh.svg?branch=master)](https://travis-ci.org/azu/textlint-rule-prh)
 
 [textlint](https://github.com/azu/textlint "textlint") rule for [vvakame/prh](https://github.com/vvakame/prh "vvakame/prh").
 
@@ -23,6 +23,12 @@ This rule check the spell by used with `prh.yml`.
 ```
 
 `rulePaths` : path to YAML file.
+
+### Fixable
+
+[![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) 
+
+`textlint-rule-prh` support `--fix` feature of textlint.
 
 ### What is prh.yml?
 

@@ -16,10 +16,11 @@ describe(".textlinrc test", function () {
                     "rulePaths": [path.join(__dirname, "fixtures", "rule.yaml")]
                 }
             });
-            var result = textlint.lintMarkdown("jquery");
-            assert(result.messages.length === 1);
-            assert(result.messages[0].line === 1);
-            assert(result.messages[0].column === 1);
+            return textlint.lintMarkdown("jquery").then(result => {
+                assert(result.messages.length === 1);
+                assert(result.messages[0].line === 1);
+                assert(result.messages[0].column === 1);
+            });
         });
         it("should resolve path to rule.yaml", function () {
             var textlint = new TextLintCore();
@@ -30,10 +31,11 @@ describe(".textlinrc test", function () {
                     "rulePaths": [path.join(__dirname, "fixtures", "rule.yaml")]
                 }
             });
-            var result = textlint.lintMarkdown("jquery");
-            assert(result.messages.length === 1);
-            assert(result.messages[0].line === 1);
-            assert(result.messages[0].column === 1);
+            return textlint.lintMarkdown("jquery").then(result => {
+                assert(result.messages.length === 1);
+                assert(result.messages[0].line === 1);
+                assert(result.messages[0].column === 1);
+            });
         });
         it("should resolve yaml content", function () {
             var textlint = new TextLintCore();
@@ -45,10 +47,11 @@ describe(".textlinrc test", function () {
                     "ruleContents": [content]
                 }
             });
-            var result = textlint.lintMarkdown("jquery");
-            assert(result.messages.length === 1);
-            assert(result.messages[0].line === 1);
-            assert(result.messages[0].column === 1);
+            return textlint.lintMarkdown("jquery").then(result => {
+                assert(result.messages.length === 1);
+                assert(result.messages[0].line === 1);
+                assert(result.messages[0].column === 1);
+            });
         });
         it("should resolve yaml file and content", function () {
             var textlint = new TextLintCore();
@@ -63,13 +66,13 @@ describe(".textlinrc test", function () {
                     "ruleContents": [content]
                 }
             });
-            var result = textlint.lintMarkdown("jquery A");
-            assert(result.messages.length === 2);
-            assert(result.messages[0].line === 1);
-            assert(result.messages[0].column === 1);
-            assert(result.messages[1].line === 1);
-            assert(result.messages[1].column === 8);
-
+            return textlint.lintMarkdown("jquery A").then(result => {
+                assert(result.messages.length === 2);
+                assert(result.messages[0].line === 1);
+                assert(result.messages[0].column === 1);
+                assert(result.messages[1].line === 1);
+                assert(result.messages[1].column === 8);
+            });
         });
 
     });
@@ -84,14 +87,17 @@ describe(".textlinrc test", function () {
                         "rulePaths": [path.join(__dirname, "fixtures", "imports.yml")]
                     }
                 });
-                var result = textlint.lintMarkdown("A");
-                assert(result.messages.length === 1);
-                var message = result.messages[0].message;
-                assert.equal(message, "A => a");
-                var resultB = textlint.lintMarkdown("B");
-                assert(resultB.messages.length === 1);
-                var messageB = resultB.messages[0].message;
-                assert.equal(messageB, "B => b");
+                return textlint.lintMarkdown("A").then(result => {
+                    assert(result.messages.length === 1);
+                    var message = result.messages[0].message;
+                    assert.equal(message, "A => a");
+                }).then(() => {
+                    return textlint.lintMarkdown("B").then(result => {
+                        assert(result.messages.length === 1);
+                        var messageB = result.messages[0].message;
+                        assert.equal(messageB, "B => b");
+                    });
+                });
             });
         });
     });

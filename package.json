@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/azu/textlint-rule-prh/issues"
   },
-  "version": "2.3.0",
+  "version": "2.4.0-0",
   "description": "textlint rule for prh.",
   "main": "lib/prh-rule.js",
   "files": [
@@ -41,6 +41,6 @@
     "espower-babel": "^3.3.0",
     "mocha": "^2.3.2",
     "power-assert": "^1.0.0",
-    "textlint": "^4.0.0"
+    "textlint": "^5.5.3"
   }
 }
