@@ -1,4 +1,4 @@
-# textlint-rule-prh [![Build Status](https://travis-ci.org/azu/textlint-rule-prh.svg?branch=master)](https://travis-ci.org/azu/textlint-rule-prh)
+# textlint-rule-prh [![Build Status](https://travis-ci.org/azu/textlint-rule-prh.svg?branch=master)](https://travis-ci.org/azu/textlint-rule-prh) [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/)
 
 [textlint](https://github.com/azu/textlint "textlint") rule for [vvakame/prh](https://github.com/vvakame/prh "vvakame/prh").
 
