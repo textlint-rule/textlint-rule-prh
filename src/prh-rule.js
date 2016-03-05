@@ -41,7 +41,7 @@ Please set .textlinrc:
 {
     "rules": {
         "prh": {
-            "rulePaths" :["path/to/rule.yaml"]
+            "rulePaths" :["path/to/prh.yml"]
         }
     }
 }
