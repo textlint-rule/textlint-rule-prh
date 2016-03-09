@@ -42,5 +42,8 @@
     "mocha": "^2.3.2",
     "power-assert": "^1.0.0",
     "textlint": "^5.5.3"
+  },
+  "peerDependencies": {
+    "textlint": ">= 5.5.0"
   }
 }
