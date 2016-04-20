@@ -48,9 +48,11 @@ rules:
         to:   日経ソフトウエア
 
   - expected: ベンダー
-    pattern: ベンダ
+    pattern: /ベンダ(?!ー)/
     specs:
       - from: ベンダ
+        to: ベンダー
+      - from: ベンダー
         to: ベンダー
 # 単語境界の区別
   - expected: js
@@ -65,3 +67,7 @@ rules:
       # 日本語+単語境界の仕様は自分で調べてね…！
       - from: 今日もJS祭り
         to:   今日もjs祭り
+
+  # 全角括弧前後の空白を除去
+  - expected: ）
+    pattern: /） | ）/
