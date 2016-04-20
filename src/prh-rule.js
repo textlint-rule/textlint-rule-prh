@@ -77,8 +77,8 @@ function reporter(context, options = {}) {
                 // | ----[match------|
                 var matchedText = slicedText.slice(0, changeSet.matches[0].length);
                 var expected = matchedText.replace(changeSet.pattern, changeSet.expected);
-                // Avoid accidental match(ignore case, expected contain actual pattern)
-                if (slicedText.indexOf(expected) === 0) {
+                // Avoid accidental match(ignore case)
+                if (matchedText === expected) {
                     return;
                 }
                 /*

@@ -25,6 +25,15 @@ describe("prh-rule-test", function () {
             });
         });
     });
+    context("when match word and s/） /）/ pattern", function () {
+        it("should report error", function () {
+            return textlint.lintMarkdown("（図1） ").then(result => {
+                assert(result.messages.length > 0);
+                assert(result.messages[0].line === 1);
+                assert(result.messages[0].column === 4);
+            });
+        });
+    });
     context("when match word but s/Web/Web/i pattern", function () {
         // fix ignore (the) case
         it("should not report", function () {
