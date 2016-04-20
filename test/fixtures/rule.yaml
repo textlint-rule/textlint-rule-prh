@@ -47,6 +47,9 @@ rules:
       - from: 日経ソフトウエア
         to:   日経ソフトウエア
 
+# expected が patternを含んでいるケース
+# ルール側で "pattern" が expected を含んでいなではない事を表明する
+# https://github.com/azu/textlint-rule-prh/pull/8
   - expected: ベンダー
     pattern: /ベンダ(?!ー)/
     specs:
