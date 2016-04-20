@@ -41,7 +41,8 @@
     "espower-babel": "^3.3.0",
     "mocha": "^2.3.2",
     "power-assert": "^1.0.0",
-    "textlint": "^6.0.1"
+    "textlint": "^6.0.1",
+    "textlint-tester": "^1.2.0"
   },
   "peerDependencies": {
     "textlint": ">= 5.5.0"
