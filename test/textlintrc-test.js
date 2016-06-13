@@ -13,7 +13,7 @@ describe(".textlinrc test", function () {
                 "prh": rule
             }, {
                 "prh": {
-                    "rulePaths": [path.join(__dirname, "fixtures", "rule.yaml")]
+                    "rulePaths": [path.join(__dirname, "fixtures", "rule.yaml"), path.join(__dirname, "fixtures", "imports.yml")]
                 }
             });
             return textlint.lintMarkdown("jquery").then(result => {
