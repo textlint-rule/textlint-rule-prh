@@ -4,12 +4,14 @@ import {RuleHelper} from "textlint-rule-helper";
 import StructuredSource from "structured-source";
 import prh from "prh";
 import path from "path";
+const untildify = require('untildify');
 function createPrhEngine(rulePaths, baseDir) {
     if (rulePaths.length === 0) {
         return null;
     }
-    const prhEngine = prh.fromYAMLFilePath(path.resolve(baseDir, rulePaths[0]));
-    rulePaths.slice(1).forEach(ruleFilePath => {
+    const expandedRulePaths = rulePaths.map(rulePath => untildify(rulePath));
+    const prhEngine = prh.fromYAMLFilePath(path.resolve(baseDir, expandedRulePaths[0]));
+    expandedRulePaths.slice(1).forEach(ruleFilePath => {
         const config = prh.fromYAMLFilePath(path.resolve(baseDir, ruleFilePath));
         prhEngine.merge(config);
     });
@@ -82,10 +84,10 @@ function reporter(context, options = {}) {
                     return;
                 }
                 /*
-                line start with 1
-                column start with 0
+                 line start with 1
+                 column start with 0
 
-                adjust position => line -1, column +0
+                 adjust position => line -1, column +0
                  */
                 var position = src.indexToPosition(changeSet.index);
 
