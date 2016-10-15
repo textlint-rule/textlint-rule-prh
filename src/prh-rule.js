@@ -2,8 +2,8 @@
 "use strict";
 import {RuleHelper} from "textlint-rule-helper";
 import StructuredSource from "structured-source";
-import prh from "prh";
-import path from "path";
+const prh = require("prh");
+const path = require("path");
 const untildify = require('untildify');
 function createPrhEngine(rulePaths, baseDir) {
     if (rulePaths.length === 0) {
@@ -73,7 +73,7 @@ function reporter(context, options = {}) {
             // to get position from index
             let src = new StructuredSource(text);
             let makeChangeSet = prhEngine.makeChangeSet(null, text);
-            makeChangeSet.diffs.forEach(function (changeSet) {
+            makeChangeSet.diffs.forEach(function(changeSet) {
                 // | ----[match]------
                 var slicedText = text.slice(changeSet.index);
                 // | ----[match------|
@@ -101,7 +101,7 @@ function reporter(context, options = {}) {
         }
     }
 }
-export default {
+module.exports = {
     linter: reporter,
     fixer: reporter
-}
+};
