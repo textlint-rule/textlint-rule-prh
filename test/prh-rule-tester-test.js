@@ -37,6 +37,14 @@ tester.run("prh", rule, {
                     column: 1
                 }
             ]
+        },
+        {
+            text: "行う、行なう、おこなう。行って、行わない、行ないます。",
+            output: "おこなう、おこなう、おこなう。おこなって、おこなわない、おこないます。",
+            options: {
+                "rulePaths": [__dirname + "/fixtures/prefer-regexp.yml"]
+            },
+            errors: [/* TODO */]
         }
     ]
 });
