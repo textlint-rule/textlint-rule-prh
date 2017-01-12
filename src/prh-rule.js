@@ -66,12 +66,13 @@ const applyChangeSet = (changeSet, str, onReplace) => {
         });
         // use start/end value is original position, not replaced position
         // textlint use original position
-        const start = diff.index;
-        const end = start + diff.matches[0].length;
-        const actual = str.slice(start, end);
+        const matchStartIndex = diff.index;
+        const matchEndIndex = matchStartIndex + diff.matches[0].length;
+        // replaced
+        const actual = str.slice(diff.index + delta, diff.index + delta + diff.matches[0].length);
         onReplace({
-            start,
-            end,
+            matchStartIndex,
+            matchEndIndex,
             actual: actual,
             expected: result
         });
@@ -103,15 +104,14 @@ function reporter(context, options = {}) {
             // to get position from index
             let src = new StructuredSource(text);
             let makeChangeSet = prhEngine.makeChangeSet(null, text);
-            applyChangeSet(makeChangeSet, text, ({start, end, actual, expected}) => {
+            applyChangeSet(makeChangeSet, text, ({matchStartIndex, matchEndIndex, actual, expected}) => {
                 // If result is not changed, should not report
                 if (actual === expected) {
                     return;
                 }
-                console.log(start, end, actual, expected);
                 report(node, new RuleError(actual + " => " + expected, {
-                    index: start,
-                    fix: fixer.replaceTextRange([start, end], expected)
+                    index: matchStartIndex,
+                    fix: fixer.replaceTextRange([matchStartIndex, matchEndIndex], expected)
                 }));
             });
         }

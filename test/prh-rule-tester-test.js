@@ -64,7 +64,7 @@ tester.run("prh", rule, {
                 {
                     "type": "lint",
                     "ruleId": "prh",
-                    "message": "う、 => おこな",
+                    "message": "行な => おこな",
                     "index": 3,
                     "line": 1,
                     "column": 4,
@@ -80,23 +80,7 @@ tester.run("prh", rule, {
                 {
                     "type": "lint",
                     "ruleId": "prh",
-                    "message": "なう、 => おこな",
-                    "index": 7,
-                    "line": 1,
-                    "column": 8,
-                    "severity": 2,
-                    "fix": {
-                        "range": [
-                            7,
-                            10
-                        ],
-                        "text": "おこな"
-                    }
-                },
-                {
-                    "type": "lint",
-                    "ruleId": "prh",
-                    "message": "な => おこな",
+                    "message": "行 => おこな",
                     "index": 12,
                     "line": 1,
                     "column": 13,
@@ -112,7 +96,7 @@ tester.run("prh", rule, {
                 {
                     "type": "lint",
                     "ruleId": "prh",
-                    "message": "こ => おこな",
+                    "message": "行 => おこな",
                     "index": 16,
                     "line": 1,
                     "column": 17,
@@ -128,7 +112,7 @@ tester.run("prh", rule, {
                 {
                     "type": "lint",
                     "ruleId": "prh",
-                    "message": "おこ => おこな",
+                    "message": "行な => おこな",
                     "index": 21,
                     "line": 1,
                     "column": 22,
