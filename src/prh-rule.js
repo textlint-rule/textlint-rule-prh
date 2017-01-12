@@ -50,6 +50,36 @@ Please set .textlinrc:
 `);
     }
 };
+
+const applyChangeSet = (changeSet, str, onReplace) => {
+    const sortedDiffs = changeSet.diffs.sort(function(a, b) {
+        return a.index - b.index;
+    });
+    let delta = 0;
+    sortedDiffs.forEach(function(diff) {
+        const result = diff.expected.replace(/\$([0-9]{1,2})/g, function(match, g1) {
+            const index = parseInt(g1);
+            if (index === 0 || (diff.matches.length - 1) < index) {
+                return match;
+            }
+            return diff.matches[index] || "";
+        });
+        // use start/end value is original position, not replaced position
+        // textlint use original position
+        const start = diff.index;
+        const end = start + diff.matches[0].length;
+        const actual = str.slice(start, end);
+        onReplace({
+            start,
+            end,
+            actual: actual,
+            expected: result
+        });
+        str = str.slice(0, diff.index + delta) + result + str.slice(diff.index + delta + diff.matches[0].length);
+        delta += result.length - diff.matches[0].length;
+    });
+    return str;
+};
 function reporter(context, options = {}) {
     assertOptions(options);
     const textlintRcFilePath = context.config ? context.config.configFile : null;
@@ -73,29 +103,15 @@ function reporter(context, options = {}) {
             // to get position from index
             let src = new StructuredSource(text);
             let makeChangeSet = prhEngine.makeChangeSet(null, text);
-            makeChangeSet.diffs.forEach(function(changeSet) {
-                // | ----[match]------
-                var slicedText = text.slice(changeSet.index);
-                // | ----[match------|
-                var matchedText = slicedText.slice(0, changeSet.matches[0].length);
-                var expected = matchedText.replace(changeSet.pattern, changeSet.expected);
-                // Avoid accidental match(ignore case)
-                if (matchedText === expected) {
+            applyChangeSet(makeChangeSet, text, ({start, end, actual, expected}) => {
+                // If result is not changed, should not report
+                if (actual === expected) {
                     return;
                 }
-                /*
-                 line start with 1
-                 column start with 0
-
-                 adjust position => line -1, column +0
-                 */
-                var position = src.indexToPosition(changeSet.index);
-
-                // line, column
-                report(node, new RuleError(matchedText + " => " + expected, {
-                    line: position.line - 1,
-                    column: position.column,
-                    fix: fixer.replaceTextRange([changeSet.index, changeSet.index + matchedText.length], expected)
+                console.log(start, end, actual, expected);
+                report(node, new RuleError(actual + " => " + expected, {
+                    index: start,
+                    fix: fixer.replaceTextRange([start, end], expected)
                 }));
             });
         }

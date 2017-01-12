@@ -44,7 +44,104 @@ tester.run("prh", rule, {
             options: {
                 "rulePaths": [__dirname + "/fixtures/prefer-regexp.yml"]
             },
-            errors: [/* TODO */]
+            errors: [
+                {
+                    "type": "lint",
+                    "ruleId": "prh",
+                    "message": "行 => おこな",
+                    "index": 0,
+                    "line": 1,
+                    "column": 1,
+                    "severity": 2,
+                    "fix": {
+                        "range": [
+                            0,
+                            1
+                        ],
+                        "text": "おこな"
+                    }
+                },
+                {
+                    "type": "lint",
+                    "ruleId": "prh",
+                    "message": "う、 => おこな",
+                    "index": 3,
+                    "line": 1,
+                    "column": 4,
+                    "severity": 2,
+                    "fix": {
+                        "range": [
+                            3,
+                            5
+                        ],
+                        "text": "おこな"
+                    }
+                },
+                {
+                    "type": "lint",
+                    "ruleId": "prh",
+                    "message": "なう、 => おこな",
+                    "index": 7,
+                    "line": 1,
+                    "column": 8,
+                    "severity": 2,
+                    "fix": {
+                        "range": [
+                            7,
+                            10
+                        ],
+                        "text": "おこな"
+                    }
+                },
+                {
+                    "type": "lint",
+                    "ruleId": "prh",
+                    "message": "な => おこな",
+                    "index": 12,
+                    "line": 1,
+                    "column": 13,
+                    "severity": 2,
+                    "fix": {
+                        "range": [
+                            12,
+                            13
+                        ],
+                        "text": "おこな"
+                    }
+                },
+                {
+                    "type": "lint",
+                    "ruleId": "prh",
+                    "message": "こ => おこな",
+                    "index": 16,
+                    "line": 1,
+                    "column": 17,
+                    "severity": 2,
+                    "fix": {
+                        "range": [
+                            16,
+                            17
+                        ],
+                        "text": "おこな"
+                    }
+                },
+                {
+                    "type": "lint",
+                    "ruleId": "prh",
+                    "message": "おこ => おこな",
+                    "index": 21,
+                    "line": 1,
+                    "column": 22,
+                    "severity": 2,
+                    "fix": {
+                        "range": [
+                            21,
+                            23
+                        ],
+                        "text": "おこな"
+                    }
+                }
+            ]
         }
     ]
 });
