@@ -1,0 +1,22 @@
+version: 1
+
+rules:
+  - prh: 「行う」「行なう」は開く。
+    expected: おこな
+    pattern: /(おこな|行な?)(?=[わいっうえお])/
+    specs:
+      - from: 行わない
+        to: おこなわない
+      - from: 行います
+        to: おこないます
+      - from: 行うとき
+        to: おこなうとき
+      - from: 行えば
+        to: おこなえば
+      - from: 行なう
+        to: おこなう
+      - from: おこなう
+        to: おこなう
+      # チェックされなくてよい部分
+      - from: 行く
+        to: 行く
