@@ -126,6 +126,96 @@ tester.run("prh", rule, {
                     }
                 }
             ]
+        },
+        // example-prh.yml
+        {
+            text: "jqueryではクッキー。ディフォルトとハードウエアー。(そのとおり)\nサーバはサーバーサイドをjsする。",
+            output: "jQueryではクッキー。デフォルトとハードウェア。（そのとおり）\nサーバーはサーバーサイドをjsする。",
+            options: {
+                "rulePaths": [__dirname + "/fixtures/example-prh.yml"]
+            },
+            errors: [
+                {
+                    "type": "lint",
+                    "ruleId": "prh",
+                    "message": "jquery => jQuery",
+                    "index": 0,
+                    "line": 1,
+                    "column": 1,
+                    "severity": 2,
+                    "fix": {
+                        "range": [
+                            0,
+                            6
+                        ],
+                        "text": "jQuery"
+                    }
+                },
+                {
+                    "type": "lint",
+                    "ruleId": "prh",
+                    "message": "ディフォルト => デフォルト",
+                    "index": 13,
+                    "line": 1,
+                    "column": 14,
+                    "severity": 2,
+                    "fix": {
+                        "range": [
+                            13,
+                            19
+                        ],
+                        "text": "デフォルト"
+                    }
+                },
+                {
+                    "type": "lint",
+                    "ruleId": "prh",
+                    "message": "ハードウエアー => ハードウェア",
+                    "index": 20,
+                    "line": 1,
+                    "column": 21,
+                    "severity": 2,
+                    "fix": {
+                        "range": [
+                            20,
+                            27
+                        ],
+                        "text": "ハードウェア"
+                    }
+                },
+                {
+                    "type": "lint",
+                    "ruleId": "prh",
+                    "message": "(そのとおり) => （そのとおり）",
+                    "index": 28,
+                    "line": 1,
+                    "column": 29,
+                    "severity": 2,
+                    "fix": {
+                        "range": [
+                            28,
+                            35
+                        ],
+                        "text": "（そのとおり）"
+                    }
+                },
+                {
+                    "type": "lint",
+                    "ruleId": "prh",
+                    "message": "サーバ => サーバー",
+                    "index": 36,
+                    "line": 2,
+                    "column": 1,
+                    "severity": 2,
+                    "fix": {
+                        "range": [
+                            36,
+                            39
+                        ],
+                        "text": "サーバー"
+                    }
+                }
+            ]
         }
     ]
 });

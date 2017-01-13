@@ -2,10 +2,6 @@ version: 1
 
 rules:
   - prh: 「行う」「行なう」は開く。
-    # textlint ログにレポートされる
-    # pattern: '/(おこな|行な?)([わいっうえお])/g'
-    # expected: おこな$2
-    # textlint ログにレポートされない
     expected: おこな
     pattern: /(おこな|行な?)(?=[わいっうえお])/
     specs:
