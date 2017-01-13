@@ -1,7 +1,6 @@
 // LICENSE : MIT
 "use strict";
 import {RuleHelper} from "textlint-rule-helper";
-import StructuredSource from "structured-source";
 const prh = require("prh");
 const path = require("path");
 const untildify = require('untildify');
@@ -51,7 +50,18 @@ Please set .textlinrc:
     }
 };
 
-const applyChangeSet = (changeSet, str, onReplace) => {
+/**
+ * for each diff of changeSet
+ * @param {ChangeSet} changeSet
+ * @param {string} str
+ * @param {function({
+            matchStartIndex: number,
+            matchEndIndex: number,
+            actual: string
+            expected: string
+        })}onChangeOfMatch
+ */
+const forEachChange = (changeSet, str, onChangeOfMatch) => {
     const sortedDiffs = changeSet.diffs.sort(function(a, b) {
         return a.index - b.index;
     });
@@ -64,13 +74,13 @@ const applyChangeSet = (changeSet, str, onReplace) => {
             }
             return diff.matches[index] || "";
         });
-        // use start/end value is original position, not replaced position
+        // matchStartIndex/matchEndIndex value is original position, not replaced position
         // textlint use original position
         const matchStartIndex = diff.index;
         const matchEndIndex = matchStartIndex + diff.matches[0].length;
-        // replaced
+        // actual => expected
         const actual = str.slice(diff.index + delta, diff.index + delta + diff.matches[0].length);
-        onReplace({
+        onChangeOfMatch({
             matchStartIndex,
             matchEndIndex,
             actual: actual,
@@ -79,7 +89,6 @@ const applyChangeSet = (changeSet, str, onReplace) => {
         str = str.slice(0, diff.index + delta) + result + str.slice(diff.index + delta + diff.matches[0].length);
         delta += result.length - diff.matches[0].length;
     });
-    return str;
 };
 function reporter(context, options = {}) {
     assertOptions(options);
@@ -100,11 +109,10 @@ function reporter(context, options = {}) {
             if (helper.isChildNode(node, [Syntax.Link, Syntax.Image, Syntax.BlockQuote, Syntax.Emphasis])) {
                 return;
             }
-            let text = getSource(node);
+            const text = getSource(node);
             // to get position from index
-            let src = new StructuredSource(text);
-            let makeChangeSet = prhEngine.makeChangeSet(null, text);
-            applyChangeSet(makeChangeSet, text, ({matchStartIndex, matchEndIndex, actual, expected}) => {
+            const makeChangeSet = prhEngine.makeChangeSet(null, text);
+            forEachChange(makeChangeSet, text, ({matchStartIndex, matchEndIndex, actual, expected}) => {
                 // If result is not changed, should not report
                 if (actual === expected) {
                     return;
