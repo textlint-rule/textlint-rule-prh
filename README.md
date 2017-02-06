@@ -1,6 +1,6 @@
 # textlint-rule-prh [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) [![Build Status](https://travis-ci.org/azu/textlint-rule-prh.svg?branch=master)](https://travis-ci.org/azu/textlint-rule-prh)
 
-[textlint](https://github.com/azu/textlint "textlint") rule for [vvakame/prh](https://github.com/vvakame/prh "vvakame/prh").
+[textlint](https://github.com/azu/textlint "textlint") rule for [prh/prh: proofreading helper](https://github.com/prh/prh "prh/prh: proofreading helper").
 
 This rule check the spell by used with `prh.yml`.
 
@@ -36,7 +36,7 @@ textlint --fix README.md
 
 ## What is prh.yml?
 
-Please See [vvakame/prh](https://github.com/vvakame/prh "vvakame/prh").
+Please See [prh/prh: proofreading helper](https://github.com/prh/prh "prh/prh: proofreading helper").
 
 ### prh format
 
