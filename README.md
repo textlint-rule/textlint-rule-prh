@@ -115,6 +115,18 @@ rules:
         to:   foo altJS bar
 ```
 
+#### imports
+
+prh.yml can import other yaml file
+
+```yaml
+version: 1
+
+imports:
+  - imports-a.yml
+  - imports-b.yml
+  ```
+
 ## Example
 
 See [azu/prh-textlint-example: Example of textlint + prh.](https://github.com/azu/prh-textlint-example "azu/prh-textlint-example: Example of textlint + prh.").
