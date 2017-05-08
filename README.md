@@ -1,5 +1,7 @@
 # textlint-rule-prh [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) [![Build Status](https://travis-ci.org/azu/textlint-rule-prh.svg?branch=master)](https://travis-ci.org/azu/textlint-rule-prh)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/azu/textlint-rule-prh.svg)](https://greenkeeper.io/)
+
 [textlint](https://github.com/azu/textlint "textlint") rule for [prh/prh: proofreading helper](https://github.com/prh/prh "prh/prh: proofreading helper").
 
 This rule check the spell by used with `prh.yml`.
