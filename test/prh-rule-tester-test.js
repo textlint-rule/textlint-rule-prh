@@ -3,7 +3,7 @@
 var TextLintTester = require("textlint-tester");
 var tester = new TextLintTester();
 // rule
-import rule from "../src/prh-rule";
+import rule from "../src/textlint-rule-prh";
 // ruleName, rule, { valid, invalid }
 tester.run("prh", rule, {
     valid: [

@@ -1,6 +1,7 @@
 // LICENSE : MIT
 "use strict";
-import {RuleHelper} from "textlint-rule-helper";
+import { RuleHelper } from "textlint-rule-helper";
+
 const prh = require("prh");
 const path = require("path");
 const untildify = require('untildify');
@@ -90,11 +91,20 @@ const forEachChange = (changeSet, str, onChangeOfMatch) => {
         delta += result.length - diff.matches[0].length;
     });
 };
-function reporter(context, options = {}) {
-    assertOptions(options);
+const getConfigBaseDir = (context) => {
+    if (typeof context.getConfigBaseDir === "function") {
+        return context.getConfigBaseDir();
+    }
+    // Old fallback that use deprecated `config` value
+    // https://github.com/textlint/textlint/issues/294
     const textlintRcFilePath = context.config ? context.config.configFile : null;
     // .textlinrc directory
-    const textlintRCDir = textlintRcFilePath ? path.dirname(textlintRcFilePath) : process.cwd();
+    return textlintRcFilePath ? path.dirname(textlintRcFilePath) : process.cwd();
+};
+function reporter(context, options = {}) {
+    assertOptions(options);
+    // .textlinrc directory
+    const textlintRCDir = getConfigBaseDir(context);
     // create prh config
     const rulePaths = options.rulePaths || [];
     const ruleContents = options.ruleContents || [];
@@ -103,7 +113,7 @@ function reporter(context, options = {}) {
     const prhEngineFiles = createPrhEngine(rulePaths, textlintRCDir);
     const prhEngine = mergePrh(prhEngineFiles, prhEngineContent);
     const helper = new RuleHelper(context);
-    const {Syntax, getSource, report, fixer, RuleError} = context;
+    const { Syntax, getSource, report, fixer, RuleError } = context;
     return {
         [Syntax.Str](node){
             if (helper.isChildNode(node, [Syntax.Link, Syntax.Image, Syntax.BlockQuote, Syntax.Emphasis])) {
@@ -112,7 +122,7 @@ function reporter(context, options = {}) {
             const text = getSource(node);
             // to get position from index
             const makeChangeSet = prhEngine.makeChangeSet(null, text);
-            forEachChange(makeChangeSet, text, ({matchStartIndex, matchEndIndex, actual, expected}) => {
+            forEachChange(makeChangeSet, text, ({ matchStartIndex, matchEndIndex, actual, expected }) => {
                 // If result is not changed, should not report
                 if (actual === expected) {
                     return;

@@ -2,7 +2,7 @@
 "use strict";
 import assert from "power-assert";
 import {textlint} from "textlint";
-import rule from "../src/prh-rule";
+import rule from "../src/textlint-rule-prh";
 describe("prh-rule-test", function () {
     beforeEach(function () {
         textlint.setupRules({
