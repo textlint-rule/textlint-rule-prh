@@ -93,7 +93,7 @@ const forEachChange = (changeSet, str, onChangeOfMatch) => {
 };
 const getConfigBaseDir = (context) => {
     if (typeof context.getConfigBaseDir === "function") {
-        return context.getConfigBaseDir();
+        return context.getConfigBaseDir() || process.cwd();
     }
     // Old fallback that use deprecated `config` value
     // https://github.com/textlint/textlint/issues/294
@@ -127,7 +127,9 @@ function reporter(context, options = {}) {
                 if (actual === expected) {
                     return;
                 }
-                report(node, new RuleError(actual + " => " + expected, {
+
+                const messages = actual + " => " + expected;
+                report(node, new RuleError(messages, {
                     index: matchStartIndex,
                     fix: fixer.replaceTextRange([matchStartIndex, matchEndIndex], expected)
                 }));
