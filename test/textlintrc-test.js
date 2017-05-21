@@ -2,27 +2,26 @@
 "use strict";
 import assert from "power-assert";
 import fs from "fs";
-import {TextLintCore} from "textlint";
-import rule from "../src/prh-rule";
+import { TextLintEngine, TextLintCore } from "textlint";
+import rule from "../src/textlint-rule-prh";
 import path from "path";
-describe(".textlinrc test", function () {
-    context("when use .textlintrc", function () {
-        it("should resolve path to rule.yaml", function () {
-            var textlint = new TextLintCore();
-            textlint.setupRules({
-                "prh": rule
-            }, {
-                "prh": {
-                    "rulePaths": [path.join(__dirname, "fixtures", "rule.yaml"), path.join(__dirname, "fixtures", "imports.yml")]
-                }
+
+describe(".textlinrc test", function() {
+    context("when use .textlintrc", function() {
+        it("should resolve path to rule.yaml", function() {
+            const engine = new TextLintEngine({
+                configFile: path.join(__dirname, "fixtures/.textlintrc"),
+                rulesBaseDirectory: path.join(__dirname, "../src")
             });
-            return textlint.lintMarkdown("jquery").then(result => {
+            return engine.executeOnText("jquery").then(([result]) => {
                 assert(result.messages.length === 1);
                 assert(result.messages[0].line === 1);
                 assert(result.messages[0].column === 1);
             });
         });
-        it("should resolve path to rule.yaml", function () {
+    });
+    context("options", () => {
+        it("should resolve path to rule.yaml", function() {
             var textlint = new TextLintCore();
             textlint.setupRules({
                 "prh": rule
@@ -37,7 +36,7 @@ describe(".textlinrc test", function () {
                 assert(result.messages[0].column === 1);
             });
         });
-        it("should resolve yaml content", function () {
+        it("should resolve yaml content", function() {
             var textlint = new TextLintCore();
             var content = fs.readFileSync(path.join(__dirname, "fixtures", "rule.yaml"), "utf-8");
             textlint.setupRules({
@@ -53,7 +52,7 @@ describe(".textlinrc test", function () {
                 assert(result.messages[0].column === 1);
             });
         });
-        it("should resolve yaml file and content", function () {
+        it("should resolve yaml file and content", function() {
             var textlint = new TextLintCore();
             var content = fs.readFileSync(path.join(__dirname, "fixtures", "rule.yaml"), "utf-8");
             textlint.setupRules({
@@ -74,11 +73,11 @@ describe(".textlinrc test", function () {
                 assert(result.messages[1].column === 8);
             });
         });
-
     });
-    context("prh features", function () {
-        describe("import", function () {
-            it("should work import directive", function () {
+
+    context("prh features", function() {
+        describe("import", function() {
+            it("should work import directive", function() {
                 var textlint = new TextLintCore();
                 textlint.setupRules({
                     "prh": rule
