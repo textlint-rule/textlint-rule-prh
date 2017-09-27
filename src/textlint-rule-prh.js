@@ -4,7 +4,7 @@ import { RuleHelper } from "textlint-rule-helper";
 
 const prh = require("prh");
 const path = require("path");
-const untildify = require('untildify');
+const untildify = require("untildify");
 
 function createPrhEngine(rulePaths, baseDir) {
     if (rulePaths.length === 0) {
@@ -41,7 +41,7 @@ function mergePrh(...engines) {
     return mainEngine;
 }
 
-const assertOptions = (options) => {
+const assertOptions = options => {
     if (typeof options.ruleContents === "undefined" && typeof options.rulePaths === "undefined") {
         throw new Error(`textlint-rule-prh require Rule Options.
 Please set .textlinrc:
@@ -75,7 +75,7 @@ const forEachChange = (changeSet, str, onChangeOfMatch) => {
     sortedDiffs.forEach(function(diff) {
         const result = diff.expected.replace(/\$([0-9]{1,2})/g, function(match, g1) {
             const index = parseInt(g1);
-            if (index === 0 || (diff.matches.length - 1) < index) {
+            if (index === 0 || diff.matches.length - 1 < index) {
                 return match;
             }
             return diff.matches[index] || "";
@@ -96,7 +96,7 @@ const forEachChange = (changeSet, str, onChangeOfMatch) => {
         delta += result.length - diff.matches[0].length;
     });
 };
-const getConfigBaseDir = (context) => {
+const getConfigBaseDir = context => {
     if (typeof context.getConfigBaseDir === "function") {
         return context.getConfigBaseDir() || process.cwd();
     }
@@ -137,13 +137,16 @@ function reporter(context, options = {}) {
                 }
 
                 const messages = actual + " => " + expected;
-                report(node, new RuleError(messages, {
-                    index: matchStartIndex,
-                    fix: fixer.replaceTextRange([matchStartIndex, matchEndIndex], expected)
-                }));
+                report(
+                    node,
+                    new RuleError(messages, {
+                        index: matchStartIndex,
+                        fix: fixer.replaceTextRange([matchStartIndex, matchEndIndex], expected)
+                    })
+                );
             });
         }
-    }
+    };
 }
 
 module.exports = {
