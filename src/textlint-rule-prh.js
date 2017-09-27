@@ -1,6 +1,17 @@
 // LICENSE : MIT
 "use strict";
 import { RuleHelper } from "textlint-rule-helper";
+/**
+ * RegExp#flags polyfill
+ */
+if (RegExp.prototype.flags === undefined) {
+    Object.defineProperty(RegExp.prototype, "flags", {
+        configurable: true,
+        get: function() {
+            return this.toString().match(/[gimuy]*$/)[0];
+        }
+    });
+}
 
 const prh = require("prh");
 const path = require("path");
