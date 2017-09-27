@@ -5,6 +5,7 @@ import { RuleHelper } from "textlint-rule-helper";
 const prh = require("prh");
 const path = require("path");
 const untildify = require('untildify');
+
 function createPrhEngine(rulePaths, baseDir) {
     if (rulePaths.length === 0) {
         return null;
@@ -17,17 +18,20 @@ function createPrhEngine(rulePaths, baseDir) {
     });
     return prhEngine;
 }
+
 function createPrhEngineFromContents(yamlContents) {
     if (yamlContents.length === 0) {
         return null;
     }
-    const prhEngine = prh.fromYAML(null, yamlContents[0]);
+    const dummyFilePath = "";
+    const prhEngine = prh.fromYAML(dummyFilePath, yamlContents[0]);
     yamlContents.slice(1).forEach(content => {
-        const config = prh.fromYAML(null, content);
+        const config = prh.fromYAML(dummyFilePath, content);
         prhEngine.merge(config);
     });
     return prhEngine;
 }
+
 function mergePrh(...engines) {
     const engines_ = engines.filter(engine => !!engine);
     const mainEngine = engines_[0];
@@ -36,6 +40,7 @@ function mergePrh(...engines) {
     });
     return mainEngine;
 }
+
 const assertOptions = (options) => {
     if (typeof options.ruleContents === "undefined" && typeof options.rulePaths === "undefined") {
         throw new Error(`textlint-rule-prh require Rule Options.
@@ -101,6 +106,7 @@ const getConfigBaseDir = (context) => {
     // .textlinrc directory
     return textlintRcFilePath ? path.dirname(textlintRcFilePath) : process.cwd();
 };
+
 function reporter(context, options = {}) {
     assertOptions(options);
     // .textlinrc directory
@@ -115,13 +121,15 @@ function reporter(context, options = {}) {
     const helper = new RuleHelper(context);
     const { Syntax, getSource, report, fixer, RuleError } = context;
     return {
-        [Syntax.Str](node){
+        [Syntax.Str](node) {
             if (helper.isChildNode(node, [Syntax.Link, Syntax.Image, Syntax.BlockQuote, Syntax.Emphasis])) {
                 return;
             }
             const text = getSource(node);
             // to get position from index
-            const makeChangeSet = prhEngine.makeChangeSet(null, text);
+            // https://github.com/prh/prh/issues/29
+            const dummyFilePath = "";
+            const makeChangeSet = prhEngine.makeChangeSet(dummyFilePath, text);
             forEachChange(makeChangeSet, text, ({ matchStartIndex, matchEndIndex, actual, expected }) => {
                 // If result is not changed, should not report
                 if (actual === expected) {
@@ -137,6 +145,7 @@ function reporter(context, options = {}) {
         }
     }
 }
+
 module.exports = {
     linter: reporter,
     fixer: reporter
