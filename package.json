@@ -47,7 +47,7 @@
     "babel-register": "^6.26.0",
     "husky": "^0.14.3",
     "lint-staged": "^4.2.3",
-    "mocha": "^3.5.3",
+    "mocha": "^4.0.0",
     "power-assert": "^1.4.4",
     "prettier": "^1.7.0",
     "textlint": "^8.2.1",
