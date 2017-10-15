@@ -1,8 +1,8 @@
-# textlint-rule-prh [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) [![Build Status](https://travis-ci.org/azu/textlint-rule-prh.svg?branch=master)](https://travis-ci.org/azu/textlint-rule-prh)
+# textlint-rule-prh [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) [![Build Status](https://travis-ci.org/textlint-rule/textlint-rule-prh.svg?branch=master)](https://travis-ci.org/textlint-rule/textlint-rule-prh)
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/azu/textlint-rule-prh.svg)](https://greenkeeper.io/)
+[![Greenkeeper badge](https://badges.greenkeeper.io/textlint-rule/textlint-rule-prh.svg)](https://greenkeeper.io/)
 
-[textlint](https://github.com/azu/textlint "textlint") rule for [prh/prh: proofreading helper](https://github.com/prh/prh "prh/prh: proofreading helper").
+[textlint](https://github.com/textlint-rule/textlint "textlint") rule for [prh/prh: proofreading helper](https://github.com/prh/prh "prh/prh: proofreading helper").
 
 This rule check the spell by used with `prh.yml`.
 
@@ -97,7 +97,7 @@ rules:
         to:   ECMAScript 2015
 
 # expected contain pattern
-# https://github.com/azu/textlint-rule-prh/pull/8
+# https://github.com/textlint-rule/textlint-rule-prh/pull/8
   - expected: ベンダー
     pattern: /ベンダ(?!ー)/
     specs:
@@ -131,7 +131,7 @@ imports:
 
 ## Example
 
-See [azu/prh-textlint-example: Example of textlint + prh.](https://github.com/azu/prh-textlint-example "azu/prh-textlint-example: Example of textlint + prh.").
+See [textlint-rule/prh-textlint-example: Example of textlint + prh.](https://github.com/textlint-rule/prh-textlint-example "textlint-rule/prh-textlint-example: Example of textlint + prh.").
 
 
 ## Tests
