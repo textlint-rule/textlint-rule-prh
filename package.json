@@ -2,14 +2,14 @@
   "name": "textlint-rule-prh",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/azu/textlint-rule-prh.git"
+    "url": "git+https://github.com/textlint-rule/textlint-rule-prh.git"
   },
   "author": "azu",
   "email": "azuciao@gmail.com",
-  "homepage": "https://github.com/azu/textlint-rule-prh",
+  "homepage": "https://github.com/textlint-rule/textlint-rule-prh",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/azu/textlint-rule-prh/issues"
+    "url": "https://github.com/textlint-rule/textlint-rule-prh/issues"
   },
   "version": "5.0.1",
   "description": "textlint rule for prh.",
