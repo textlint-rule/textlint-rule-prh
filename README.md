@@ -24,7 +24,32 @@ This rule check the spell by used with `prh.yml`.
 }
 ```
 
-`rulePaths` : path to YAML file.
+### Options
+
+- `rulePaths`(required) : array of path to YAML file from `.textlintrc` file
+ 
+```json
+{
+    "rules": {
+        "prh": {
+            "rulePaths" :["./prh-rules/rule1.yml", "./prh-rules/rule2.yml"]
+        }
+    }
+}
+```
+
+You can use `~` as Home directory abbreviation.
+
+```json
+{
+    "rules": {
+        "prh": {
+            "rulePaths" :["~/global-rule/rule1.yml"]
+        }
+    }
+}
+```
+
 
 ### Fixable
 
