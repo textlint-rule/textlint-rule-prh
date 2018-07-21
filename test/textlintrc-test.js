@@ -82,61 +82,6 @@ describe(".textlinrc test", function() {
                 assert(result.messages[1].column === 8);
             });
         });
-        it("should not visit Link, Image, BlockQuote, Emphasis by default", async function() {
-            var textlint = new TextLintCore();
-            var content = fs.readFileSync(path.join(__dirname, "fixtures", "rule.yaml"), "utf-8");
-            textlint.setupRules(
-                {
-                    prh: rule
-                },
-                {
-                    prh: {
-                        ruleContents: [content]
-                    }
-                }
-            );
-            const markdown = "[jquery](jquery)\n![jquery](jquery)\n\n    ＪＱＵＥＲＹ\n\n*ディフォルト*";
-            const result = await textlint.lintMarkdown(markdown);
-            assert(result.messages.length === 0);
-        });
-        it("should visit Link when checkLink is true", async function() {
-            var textlint = new TextLintCore();
-            var content = fs.readFileSync(path.join(__dirname, "fixtures", "rule.yaml"), "utf-8");
-            textlint.setupRules(
-                {
-                    prh: rule
-                },
-                {
-                    prh: {
-                        ruleContents: [content],
-                        checkLink: true
-                    }
-                }
-            );
-            const markdown = "[ディフォルト設定はこちら](https://example.com)";
-            const result = await textlint.lintMarkdown(markdown);
-            assert(result.messages.length === 1);
-            assert(result.messages[0].line === 1);
-            assert(result.messages[0].column === 2);
-        });
-        it("should not visit Header when checkHeader is true", async function() {
-            var textlint = new TextLintCore();
-            var content = fs.readFileSync(path.join(__dirname, "fixtures", "rule.yaml"), "utf-8");
-            textlint.setupRules(
-                {
-                    prh: rule
-                },
-                {
-                    prh: {
-                        ruleContents: [content],
-                        checkHeader: false
-                    }
-                }
-            );
-            const markdown = "# ＪＱＵＥＲＹ";
-            const result = await textlint.lintMarkdown(markdown);
-            assert(result.messages.length === 0);
-        });
     });
 
     context("prh features", function() {

@@ -14,7 +14,7 @@ tester.run("prh", rule, {
             }
         },
         {
-            text: "[JS code is here](https://example.com/js)",
+            text: "[jquery](jquery)\n![jquery](jquery)\n\n> ＪＱＵＥＲＹ\n\n*ディフォルト*",
             options: {
                 rulePaths: [__dirname + "/fixtures/rule.yaml"]
             }
@@ -117,6 +117,75 @@ tester.run("prh", rule, {
                     fix: {
                         range: [21, 23],
                         text: "おこな"
+                    }
+                }
+            ]
+        },
+        {
+            text: "[jquery](https://example.com)",
+            output: "[jQuery](https://example.com)",
+            options: {
+                rulePaths: [__dirname + "/fixtures/rule.yaml"],
+                checkLink: true
+            },
+            errors: [
+                {
+                    type: "lint",
+                    ruleId: "prh",
+                    message: "jquery => jQuery",
+                    index: 1,
+                    line: 1,
+                    column: 2,
+                    severity: 2,
+                    fix: {
+                        range: [1, 7],
+                        text: "jQuery"
+                    }
+                }
+            ]
+        },
+        {
+            text: "> ＪＱＵＥＲＹ",
+            output: "> jQuery",
+            options: {
+                rulePaths: [__dirname + "/fixtures/rule.yaml"],
+                checkBlockQuote: true
+            },
+            errors: [
+                {
+                    type: "lint",
+                    ruleId: "prh",
+                    message: "ＪＱＵＥＲＹ => jQuery",
+                    index: 2,
+                    line: 1,
+                    column: 3,
+                    severity: 2,
+                    fix: {
+                        range: [2, 8],
+                        text: "jQuery"
+                    }
+                }
+            ]
+        },
+        {
+            text: "*ディフォルト*",
+            output: "*デフォルト*",
+            options: {
+                rulePaths: [__dirname + "/fixtures/rule.yaml"],
+                checkEmphasis: true
+            },
+            errors: [
+                {
+                    type: "lint",
+                    ruleId: "prh",
+                    message: "ディフォルト => デフォルト",
+                    index: 1,
+                    line: 1,
+                    column: 2,
+                    severity: 2,
+                    fix: {
+                        range: [1, 7],
+                        text: "デフォルト"
                     }
                 }
             ]
