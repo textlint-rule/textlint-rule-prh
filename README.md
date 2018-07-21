@@ -50,6 +50,21 @@ You can use `~` as Home directory abbreviation.
 }
 ```
 
+- `checkLink`(optional) : Check `Link` node type (default: `false`)
+- `checkBlockQuote`(optional) : Check `BlockQuote` node type (default: `false`)
+- `checkEmphasis`(optional) : Check `Emphasis` node type (default: `false`)
+- `checkHeader`(optional) : Check `Header` node type (default: `true`)
+
+```json
+{
+    "rules": {
+        "prh": {
+            "checkEmphasis": true,
+            "checkHeader": false
+        }
+    }
+}
+```
 
 ### Fixable
 

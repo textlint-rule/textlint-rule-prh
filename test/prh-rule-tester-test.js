@@ -12,6 +12,19 @@ tester.run("prh", rule, {
             options: {
                 rulePaths: [__dirname + "/fixtures/rule.yaml"]
             }
+        },
+        {
+            text: "[jquery](jquery)\n> ＪＱＵＥＲＹ\n\n*ディフォルト*",
+            options: {
+                rulePaths: [__dirname + "/fixtures/rule.yaml"]
+            }
+        },
+        {
+            text: "# ディフォルト設定",
+            options: {
+                rulePaths: [__dirname + "/fixtures/rule.yaml"],
+                checkHeader: false
+            }
         }
     ],
     invalid: [
@@ -104,6 +117,97 @@ tester.run("prh", rule, {
                     fix: {
                         range: [21, 23],
                         text: "おこな"
+                    }
+                }
+            ]
+        },
+        {
+            text: "[jquery](https://example.com)",
+            output: "[jQuery](https://example.com)",
+            options: {
+                rulePaths: [__dirname + "/fixtures/rule.yaml"],
+                checkLink: true
+            },
+            errors: [
+                {
+                    type: "lint",
+                    ruleId: "prh",
+                    message: "jquery => jQuery",
+                    index: 1,
+                    line: 1,
+                    column: 2,
+                    severity: 2,
+                    fix: {
+                        range: [1, 7],
+                        text: "jQuery"
+                    }
+                }
+            ]
+        },
+        {
+            text: "> ＪＱＵＥＲＹ",
+            output: "> jQuery",
+            options: {
+                rulePaths: [__dirname + "/fixtures/rule.yaml"],
+                checkBlockQuote: true
+            },
+            errors: [
+                {
+                    type: "lint",
+                    ruleId: "prh",
+                    message: "ＪＱＵＥＲＹ => jQuery",
+                    index: 2,
+                    line: 1,
+                    column: 3,
+                    severity: 2,
+                    fix: {
+                        range: [2, 8],
+                        text: "jQuery"
+                    }
+                }
+            ]
+        },
+        {
+            text: "*ディフォルト*",
+            output: "*デフォルト*",
+            options: {
+                rulePaths: [__dirname + "/fixtures/rule.yaml"],
+                checkEmphasis: true
+            },
+            errors: [
+                {
+                    type: "lint",
+                    ruleId: "prh",
+                    message: "ディフォルト => デフォルト",
+                    index: 1,
+                    line: 1,
+                    column: 2,
+                    severity: 2,
+                    fix: {
+                        range: [1, 7],
+                        text: "デフォルト"
+                    }
+                }
+            ]
+        },
+        {
+            text: "# ディフォルト設定",
+            output: "# デフォルト設定",
+            options: {
+                rulePaths: [__dirname + "/fixtures/rule.yaml"]
+            },
+            errors: [
+                {
+                    type: "lint",
+                    ruleId: "prh",
+                    message: "ディフォルト => デフォルト",
+                    index: 2,
+                    line: 1,
+                    column: 3,
+                    severity: 2,
+                    fix: {
+                        range: [2, 8],
+                        text: "デフォルト"
                     }
                 }
             ]
