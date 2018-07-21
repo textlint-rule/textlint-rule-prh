@@ -12,6 +12,19 @@ tester.run("prh", rule, {
             options: {
                 rulePaths: [__dirname + "/fixtures/rule.yaml"]
             }
+        },
+        {
+            text: "[JS code is here](https://example.com/js)",
+            options: {
+                rulePaths: [__dirname + "/fixtures/rule.yaml"]
+            }
+        },
+        {
+            text: "# ディフォルト設定",
+            options: {
+                rulePaths: [__dirname + "/fixtures/rule.yaml"],
+                checkHeader: false
+            }
         }
     ],
     invalid: [
@@ -104,6 +117,28 @@ tester.run("prh", rule, {
                     fix: {
                         range: [21, 23],
                         text: "おこな"
+                    }
+                }
+            ]
+        },
+        {
+            text: "# ディフォルト設定",
+            output: "# デフォルト設定",
+            options: {
+                rulePaths: [__dirname + "/fixtures/rule.yaml"]
+            },
+            errors: [
+                {
+                    type: "lint",
+                    ruleId: "prh",
+                    message: "ディフォルト => デフォルト",
+                    index: 2,
+                    line: 1,
+                    column: 3,
+                    severity: 2,
+                    fix: {
+                        range: [2, 8],
+                        text: "デフォルト"
                     }
                 }
             ]
