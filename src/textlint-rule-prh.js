@@ -120,20 +120,21 @@ const getConfigBaseDir = context => {
 
 function reporter(context, options = {}) {
     assertOptions(options);
+    const { Syntax, getSource, report, fixer, RuleError } = context;
     // .textlinrc directory
     const textlintRCDir = getConfigBaseDir(context);
     // create prh config
     const rulePaths = options.rulePaths || [];
     const ruleContents = options.ruleContents || [];
+    const ignoreSyntax = options.ignoreSyntax || [Syntax.Link, Syntax.Image, Syntax.BlockQuote, Syntax.Emphasis];
     // yaml file + yaml contents
     const prhEngineContent = createPrhEngineFromContents(ruleContents);
     const prhEngineFiles = createPrhEngine(rulePaths, textlintRCDir);
     const prhEngine = mergePrh(prhEngineFiles, prhEngineContent);
     const helper = new RuleHelper(context);
-    const { Syntax, getSource, report, fixer, RuleError } = context;
     return {
         [Syntax.Str](node) {
-            if (helper.isChildNode(node, [Syntax.Link, Syntax.Image, Syntax.BlockQuote, Syntax.Emphasis])) {
+            if (helper.isChildNode(node, ignoreSyntax)) {
                 return;
             }
             const text = getSource(node);
