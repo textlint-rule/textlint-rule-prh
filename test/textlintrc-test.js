@@ -82,6 +82,43 @@ describe(".textlinrc test", function() {
                 assert(result.messages[1].column === 8);
             });
         });
+        it("by default, should ignore errors in Link, Image, BlockQuote or Emphasis", async function() {
+            var textlint = new TextLintCore();
+            var content = fs.readFileSync(path.join(__dirname, "fixtures", "rule.yaml"), "utf-8");
+            textlint.setupRules(
+                {
+                    prh: rule
+                },
+                {
+                    prh: {
+                        ruleContents: [content]
+                    }
+                }
+            );
+            const result = await textlint.lintMarkdown("# jquery\n![jquery](jquery)\n*jquery*");
+            assert(result.messages.length === 1);
+            assert(result.messages[0].line === 1);
+            assert(result.messages[0].column === 3);
+        });
+        it("should ignore specified AST types", async function() {
+            var textlint = new TextLintCore();
+            var content = fs.readFileSync(path.join(__dirname, "fixtures", "rule.yaml"), "utf-8");
+            textlint.setupRules(
+                {
+                    prh: rule
+                },
+                {
+                    prh: {
+                        ruleContents: [content],
+                        ignoreSyntax: ["Header"]
+                    }
+                }
+            );
+            const result = await textlint.lintMarkdown("# jquery\n*jquery*");
+            assert(result.messages.length === 1);
+            assert(result.messages[0].line === 2);
+            assert(result.messages[0].column === 2);
+        });
     });
 
     context("prh features", function() {
