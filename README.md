@@ -60,8 +60,8 @@ You can use `~` as Home directory abbreviation.
 {
     "rules": {
         "prh": {
-            "checkEmphasis": false,
-            "checkHeader": true
+            "checkEmphasis": true,
+            "checkHeader": false
         }
     }
 }
