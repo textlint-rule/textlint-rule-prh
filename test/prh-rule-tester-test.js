@@ -14,7 +14,7 @@ tester.run("prh", rule, {
             }
         },
         {
-            text: "[jquery](jquery)\n![jquery](jquery)\n\n> ＪＱＵＥＲＹ\n\n*ディフォルト*",
+            text: "[jquery](jquery)\n> ＪＱＵＥＲＹ\n\n*ディフォルト*",
             options: {
                 rulePaths: [__dirname + "/fixtures/rule.yaml"]
             }

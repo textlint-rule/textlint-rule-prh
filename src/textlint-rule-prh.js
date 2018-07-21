@@ -19,7 +19,6 @@ const untildify = require("untildify");
 
 const defaultOptions = {
     checkLink: false,
-    checkImage: false,
     checkBlockQuote: false,
     checkEmphasis: false,
     checkHeader: true
@@ -79,9 +78,6 @@ const createIgnoreNodeTypes = (options, Syntax) => {
     const nodeTypes = [];
     if (!options.checkLink) {
         nodeTypes.push(Syntax.Link);
-    }
-    if (!options.checkImage) {
-        nodeTypes.push(Syntax.Image);
     }
     if (!options.checkBlockQuote) {
         nodeTypes.push(Syntax.BlockQuote);
