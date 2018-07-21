@@ -17,6 +17,14 @@ const prh = require("prh");
 const path = require("path");
 const untildify = require("untildify");
 
+const defaultOptions = {
+    checkLink: false,
+    checkImage: false,
+    checkBlockQuote: false,
+    checkEmphasis: false,
+    checkHeader: true
+};
+
 function createPrhEngine(rulePaths, baseDir) {
     if (rulePaths.length === 0) {
         return null;
@@ -65,6 +73,26 @@ Please set .textlinrc:
 }
 `);
     }
+};
+
+const createIgnoreNodeTypes = (options, Syntax) => {
+    const nodeTypes = [];
+    if (!options.checkLink) {
+        nodeTypes.push(Syntax.Link);
+    }
+    if (!options.checkImage) {
+        nodeTypes.push(Syntax.Image);
+    }
+    if (!options.checkBlockQuote) {
+        nodeTypes.push(Syntax.BlockQuote);
+    }
+    if (!options.checkEmphasis) {
+        nodeTypes.push(Syntax.Emphasis);
+    }
+    if (!options.checkHeader) {
+        nodeTypes.push(Syntax.Header);
+    }
+    return nodeTypes;
 };
 
 /**
@@ -118,8 +146,9 @@ const getConfigBaseDir = context => {
     return textlintRcFilePath ? path.dirname(textlintRcFilePath) : process.cwd();
 };
 
-function reporter(context, options = {}) {
-    assertOptions(options);
+function reporter(context, userOptions = {}) {
+    assertOptions(userOptions);
+    const options = Object.assign({}, defaultOptions, userOptions);
     // .textlinrc directory
     const textlintRCDir = getConfigBaseDir(context);
     // create prh config
@@ -131,9 +160,10 @@ function reporter(context, options = {}) {
     const prhEngine = mergePrh(prhEngineFiles, prhEngineContent);
     const helper = new RuleHelper(context);
     const { Syntax, getSource, report, fixer, RuleError } = context;
+    const ignoreNodeTypes = createIgnoreNodeTypes(options, Syntax);
     return {
         [Syntax.Str](node) {
-            if (helper.isChildNode(node, [Syntax.Link, Syntax.Image, Syntax.BlockQuote, Syntax.Emphasis])) {
+            if (helper.isChildNode(node, ignoreNodeTypes)) {
                 return;
             }
             const text = getSource(node);
