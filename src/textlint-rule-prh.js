@@ -121,11 +121,13 @@ const forEachChange = (changeSet, str, onChangeOfMatch) => {
         const matchEndIndex = matchStartIndex + diff.matches[0].length;
         // actual => expected
         const actual = str.slice(diff.index + delta, diff.index + delta + diff.matches[0].length);
+        const prh = diff.rule.raw.prh || null;
         onChangeOfMatch({
             matchStartIndex,
             matchEndIndex,
             actual: actual,
-            expected: result
+            expected: result,
+            prh
         });
         str = str.slice(0, diff.index + delta) + result + str.slice(diff.index + delta + diff.matches[0].length);
         delta += result.length - diff.matches[0].length;
@@ -167,13 +169,14 @@ function reporter(context, userOptions = {}) {
             // https://github.com/prh/prh/issues/29
             const dummyFilePath = "";
             const makeChangeSet = prhEngine.makeChangeSet(dummyFilePath, text);
-            forEachChange(makeChangeSet, text, ({ matchStartIndex, matchEndIndex, actual, expected }) => {
+            forEachChange(makeChangeSet, text, ({ matchStartIndex, matchEndIndex, actual, expected, prh }) => {
                 // If result is not changed, should not report
                 if (actual === expected) {
                     return;
                 }
 
-                const messages = actual + " => " + expected;
+                const suffix = prh !== null ? "\n" + prh : "";
+                const messages = actual + " => " + expected + suffix;
                 report(
                     node,
                     new RuleError(messages, {
