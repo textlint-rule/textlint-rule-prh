@@ -28,6 +28,7 @@ rules:
 # 表現の統一を図る
   - expected: デフォルト
     pattern:  ディフォルト
+    prh: 表記をデフォルトに統一してください
 
 # patternは複数記述可能
   - expected: ハードウェア

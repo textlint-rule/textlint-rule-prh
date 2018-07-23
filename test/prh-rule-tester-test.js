@@ -57,7 +57,7 @@ tester.run("prh", rule, {
                 {
                     type: "lint",
                     ruleId: "prh",
-                    message: "行 => おこな",
+                    message: "行 => おこな\n「行う」「行なう」は開く。",
                     index: 0,
                     line: 1,
                     column: 1,
@@ -70,7 +70,7 @@ tester.run("prh", rule, {
                 {
                     type: "lint",
                     ruleId: "prh",
-                    message: "行な => おこな",
+                    message: "行な => おこな\n「行う」「行なう」は開く。",
                     index: 3,
                     line: 1,
                     column: 4,
@@ -83,7 +83,7 @@ tester.run("prh", rule, {
                 {
                     type: "lint",
                     ruleId: "prh",
-                    message: "行 => おこな",
+                    message: "行 => おこな\n「行う」「行なう」は開く。",
                     index: 12,
                     line: 1,
                     column: 13,
@@ -96,7 +96,7 @@ tester.run("prh", rule, {
                 {
                     type: "lint",
                     ruleId: "prh",
-                    message: "行 => おこな",
+                    message: "行 => おこな\n「行う」「行なう」は開く。",
                     index: 16,
                     line: 1,
                     column: 17,
@@ -109,7 +109,7 @@ tester.run("prh", rule, {
                 {
                     type: "lint",
                     ruleId: "prh",
-                    message: "行な => おこな",
+                    message: "行な => おこな\n「行う」「行なう」は開く。",
                     index: 21,
                     line: 1,
                     column: 22,
@@ -178,7 +178,7 @@ tester.run("prh", rule, {
                 {
                     type: "lint",
                     ruleId: "prh",
-                    message: "ディフォルト => デフォルト",
+                    message: "ディフォルト => デフォルト\n表記をデフォルトに統一してください",
                     index: 1,
                     line: 1,
                     column: 2,
@@ -200,7 +200,7 @@ tester.run("prh", rule, {
                 {
                     type: "lint",
                     ruleId: "prh",
-                    message: "ディフォルト => デフォルト",
+                    message: "ディフォルト => デフォルト\n表記をデフォルトに統一してください",
                     index: 2,
                     line: 1,
                     column: 3,
