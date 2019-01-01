@@ -37,7 +37,7 @@
   "dependencies": {
     "prh": "^5.4.3",
     "textlint-rule-helper": "^2.0.1",
-    "untildify": "^3.0.2"
+    "untildify": "^3.0.3"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
