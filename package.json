@@ -50,7 +50,7 @@
     "mocha": "5.2.0",
     "power-assert": "1.6.1",
     "prettier": "1.7.0",
-    "textlint-tester": "5.0.0",
+    "textlint-tester": "5.0.2",
     "textlint": "11.0.2"
   },
   "peerDependencies": {
