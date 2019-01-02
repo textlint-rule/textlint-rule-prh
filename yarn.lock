@@ -3519,13 +3519,13 @@ textlint-rule-helper@^2.0.1:
   dependencies:
     unist-util-visit "^1.1.0"
 
-textlint-tester@5.0.2:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/textlint-tester/-/textlint-tester-5.0.2.tgz#0818a41141d1b5ccc9c05517ac1f326bfc777c1a"
+textlint-tester@5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/textlint-tester/-/textlint-tester-5.1.0.tgz#8ac47b4743ae2f7d6d79d6b014cfe286dfb82f2f"
   dependencies:
-    "@textlint/feature-flag" "^3.0.5"
-    "@textlint/kernel" "^3.0.1"
-    textlint "^11.0.2"
+    "@textlint/feature-flag" "^3.1.0"
+    "@textlint/kernel" "^3.1.0"
+    textlint "^11.1.0"
 
 textlint@11.0.2:
   version "11.0.2"
@@ -3562,7 +3562,7 @@ textlint@11.0.2:
     try-resolve "^1.0.1"
     unique-concat "^0.2.2"
 
-textlint@^11.0.2:
+textlint@^11.1.0:
   version "11.1.0"
   resolved "https://registry.yarnpkg.com/textlint/-/textlint-11.1.0.tgz#1ea998ad58e2aefe62e3a5134db66fe4ac065b3e"
   dependencies:
