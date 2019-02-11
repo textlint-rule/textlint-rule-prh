@@ -48,7 +48,7 @@
     "mocha": "5.2.0",
     "power-assert": "1.6.1",
     "prettier": "1.15.3",
-    "textlint": "11.2.1",
+    "textlint": "11.2.3",
     "textlint-tester": "5.1.2"
   },
   "peerDependencies": {
