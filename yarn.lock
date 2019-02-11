@@ -76,7 +76,7 @@
     text-table "^0.2.0"
     try-resolve "^1.0.1"
 
-"@textlint/kernel@^3.1.2", "@textlint/kernel@^3.1.4":
+"@textlint/kernel@^3.1.4":
   version "3.1.4"
   resolved "https://registry.yarnpkg.com/@textlint/kernel/-/kernel-3.1.4.tgz#a81a0e953d8ee1a8ec047df25bb2f410002e30dc"
   integrity sha512-BEK1dTrwKYX/RtM8oyBQbv4LBpXmMb9Uo/lOhHsYMhOC4bMF0zWktPiJ5bZNvvY7yyYJB42sAAthcBAdRxLhiw==
@@ -3848,16 +3848,16 @@ textlint-rule-helper@^2.1.1:
     structured-source "^3.0.2"
     unist-util-visit "^1.1.0"
 
-textlint-tester@5.1.2:
-  version "5.1.2"
-  resolved "https://registry.yarnpkg.com/textlint-tester/-/textlint-tester-5.1.2.tgz#3bb84d3924105dfc327cd39c24accd358764a090"
-  integrity sha512-VFMqWpWKv6oKJiLZggBkCwEX+B4aB7mxX/UUdLbLUPZQJodKboA9CO1SYeOOTEcOF9DTZ2dEwiYfJLhbdGXEvA==
+textlint-tester@5.1.4:
+  version "5.1.4"
+  resolved "https://registry.yarnpkg.com/textlint-tester/-/textlint-tester-5.1.4.tgz#61cebeef38cf07432c50147febfc0286101b696c"
+  integrity sha512-mZxty/Icv0JD0vK5NMBlgvSczbj1dthcpNjmBIJqh/Z6vBwAru7LVzk8UNkQ/x4zl3XcSUBK+VsTZ/tIS4VrLg==
   dependencies:
     "@textlint/feature-flag" "^3.1.2"
-    "@textlint/kernel" "^3.1.2"
-    textlint "^11.2.1"
+    "@textlint/kernel" "^3.1.4"
+    textlint "^11.2.3"
 
-textlint@11.2.3, textlint@^11.2.1:
+textlint@11.2.3, textlint@^11.2.3:
   version "11.2.3"
   resolved "https://registry.yarnpkg.com/textlint/-/textlint-11.2.3.tgz#7f7878453284f1047742458da2b5fa3a376a2e25"
   integrity sha512-3bIe/S4Gw1Ln1HNaKRJ+25V4aqDQqtRuLC5GCse/8q4FUGaJYUhqDCVYDR2dXxwcVffPNb01SwSZsSbYcseBgQ==
