@@ -49,7 +49,7 @@
     "power-assert": "1.6.1",
     "prettier": "1.15.3",
     "textlint": "11.2.5",
-    "textlint-tester": "5.1.4"
+    "textlint-tester": "5.1.6"
   },
   "peerDependencies": {
     "textlint": ">= 5.5.0"
