@@ -52,7 +52,7 @@
     "textlint-tester": "5.1.6"
   },
   "peerDependencies": {
-    "textlint": ">= 5.5.0"
+    "textlint": ">= 11.2.5"
   },
   "prettier": {
     "printWidth": 120,
