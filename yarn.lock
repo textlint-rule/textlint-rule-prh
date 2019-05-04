@@ -14,6 +14,11 @@
   dependencies:
     "@azu/format-text" "^1.0.1"
 
+"@babel/helper-plugin-utils@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@babel/helper-plugin-utils/-/helper-plugin-utils-7.0.0.tgz#bbb3fbee98661c569034237cc03967ba99b4f250"
+  integrity sha512-CYAOUCARwExnEixLdB6sDm2dIJ/YgEAKDM1MOeMeZu9Ld/bDgVo8aiWrXwcY7OBh+1Ea2uUcVRcxKk0GJvW7QA==
+
 "@babel/runtime@^7.0.0":
   version "7.4.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.4.tgz#dc2e34982eb236803aa27a07fea6857af1b9171d"
@@ -518,10 +523,10 @@ babel-plugin-espower@^2.4.0:
     espurify "^1.6.0"
     estraverse "^4.1.1"
 
-babel-plugin-jsdoc-to-assert@^3.0.1:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/babel-plugin-jsdoc-to-assert/-/babel-plugin-jsdoc-to-assert-3.0.4.tgz#fa0e98b5dc894774bd9dca48bb8b197fda557da8"
-  integrity sha1-+g6YtdyJR3S9ncpIu4sZf9pVfag=
+babel-plugin-jsdoc-to-assert@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-jsdoc-to-assert/-/babel-plugin-jsdoc-to-assert-4.0.0.tgz#1d5ac0f7394e373e42e567464549da4691133c9e"
+  integrity sha512-Yo7E8E1Z+dln8l2vstKCBCLcQfHYDxhZYZm4uu4jmE7MnnidHsefcFAC99R2i6KjZY/JhpO3ynvOgpmSKZ7/zg==
   dependencies:
     doctrine "^2.0.0"
     jsdoc-to-assert "^2.6.1"
@@ -770,12 +775,13 @@ babel-preset-es2015@6.24.1:
     babel-plugin-transform-es2015-unicode-regex "^6.24.1"
     babel-plugin-transform-regenerator "^6.24.1"
 
-babel-preset-jsdoc-to-assert@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/babel-preset-jsdoc-to-assert/-/babel-preset-jsdoc-to-assert-4.0.0.tgz#200151d3cda8ee722c69dfdee39bde7d914727d6"
-  integrity sha1-IAFR082o7nIsad/e45vefZFHJ9Y=
+babel-preset-jsdoc-to-assert@5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/babel-preset-jsdoc-to-assert/-/babel-preset-jsdoc-to-assert-5.0.0.tgz#be04488ebe0da77a29808aa3a26029c8b1f59c73"
+  integrity sha512-M/eSKhKsgeEuaJ6CK11ZygFIhcqr2LFG0UqZt/lsaFtGvOuZAApAKfe9R263oFjXHC5gQfKYdZW7DKOlUsgvJA==
   dependencies:
-    babel-plugin-jsdoc-to-assert "^3.0.1"
+    "@babel/helper-plugin-utils" "^7.0.0"
+    babel-plugin-jsdoc-to-assert "^4.0.0"
 
 babel-preset-power-assert@2.0.0:
   version "2.0.0"
