@@ -43,7 +43,7 @@
     "babel-preset-jsdoc-to-assert": "4.0.0",
     "babel-preset-power-assert": "2.0.0",
     "babel-register": "6.26.0",
-    "husky": "2.4.0",
+    "husky": "2.4.1",
     "lint-staged": "8.2.0",
     "mocha": "6.1.4",
     "power-assert": "1.6.1",
