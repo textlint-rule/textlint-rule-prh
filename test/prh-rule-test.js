@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import assert from "power-assert";
+import assert from "assert";
 import { textlint } from "textlint";
 import rule from "../src/textlint-rule-prh";
 describe("prh-rule-test", function() {

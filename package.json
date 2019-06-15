@@ -40,7 +40,6 @@
   "devDependencies": {
     "husky": "2.4.1",
     "lint-staged": "8.2.1",
-    "power-assert": "1.6.1",
     "prettier": "1.15.3",
     "textlint": "11.2.5",
     "textlint-scripts": "^2.1.0"

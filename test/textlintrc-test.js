@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import assert from "power-assert";
+import assert from "assert";
 import fs from "fs";
 import { TextLintEngine, TextLintCore } from "textlint";
 import rule from "../src/textlint-rule-prh";
