@@ -6,7 +6,7 @@ import { TextLintEngine, TextLintCore } from "textlint";
 import rule from "../src/textlint-rule-prh";
 import path from "path";
 
-describe(".textlinrc test", function() {
+describe(".textlintrc test", function() {
     context("when use .textlintrc", function() {
         it("should resolve path to rule.yaml", function() {
             const engine = new TextLintEngine({

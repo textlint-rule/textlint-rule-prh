@@ -62,7 +62,7 @@ function mergePrh(...engines) {
 const assertOptions = options => {
     if (typeof options.ruleContents === "undefined" && typeof options.rulePaths === "undefined") {
         throw new Error(`textlint-rule-prh require Rule Options.
-Please set .textlinrc:
+Please set .textlintrc:
 {
     "rules": {
         "prh": {
@@ -140,14 +140,14 @@ const getConfigBaseDir = context => {
     // Old fallback that use deprecated `config` value
     // https://github.com/textlint/textlint/issues/294
     const textlintRcFilePath = context.config ? context.config.configFile : null;
-    // .textlinrc directory
+    // .textlintrc directory
     return textlintRcFilePath ? path.dirname(textlintRcFilePath) : process.cwd();
 };
 
 function reporter(context, userOptions = {}) {
     assertOptions(userOptions);
     const options = Object.assign({}, defaultOptions, userOptions);
-    // .textlinrc directory
+    // .textlintrc directory
     const textlintRCDir = getConfigBaseDir(context);
     // create prh config
     const rulePaths = options.rulePaths || [];
