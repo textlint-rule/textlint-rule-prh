@@ -42,7 +42,7 @@
     "lint-staged": "8.2.1",
     "prettier": "1.15.3",
     "textlint": "11.4.0",
-    "textlint-scripts": "^2.1.0"
+    "textlint-scripts": "^3.0.0"
   },
   "prettier": {
     "printWidth": 120,
