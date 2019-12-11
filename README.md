@@ -52,13 +52,35 @@ You can use `~` as Home directory abbreviation.
 - `checkBlockQuote`(optional) : Check `BlockQuote` node type (default: `false`)
 - `checkEmphasis`(optional) : Check `Emphasis` node type (default: `false`)
 - `checkHeader`(optional) : Check `Header` node type (default: `true`)
+- `checkCodeComment`(optional) : Check `CodeBlock` node's comment for `lang` (default: `[]`)
+    - Set `lang` array like `["<codeblock-lang>"]` for checking CodeBlock
+    - For example, If you want to check JavaScript CodeBlock, set `{ "checkCodeComment": ["js", "javascript"] }` Options
+    - **Note:** Currently only support JavaScript CodeBlock
+        - It use [@babel/parser](https://babeljs.io/docs/en/babel-parser) 
+
+**Examples**:
 
 ```json
 {
     "rules": {
         "prh": {
             "checkEmphasis": true,
-            "checkHeader": false
+            "checkHeader": false,
+            "rulePaths" :["./prh.yml"]
+        }
+    }
+}
+```
+
+Check CodeBlock's comment in JavaScript Code.
+
+
+```json
+{
+    "rules": {
+        "prh": {
+            "checkCodeComment": ["js", "javascript"],
+            "rulePaths" :["./prh.yml"]
         }
     }
 }
@@ -157,7 +179,7 @@ rules:
 
 #### imports
 
-prh.yml can import other yaml file
+`prh.yml` can import other yaml file
 
 ```yaml
 version: 1

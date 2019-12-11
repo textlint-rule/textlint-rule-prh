@@ -25,6 +25,36 @@ tester.run("prh", rule, {
                 rulePaths: [__dirname + "/fixtures/rule.yaml"],
                 checkHeader: false
             }
+        },
+        {
+            text: "```js\n" + "\n" + "\n" + "\n" + "// JavaScript\n" + "var a = 1;\n" + "```",
+            options: {
+                checkCodeComment: ["js"],
+                rulePaths: [__dirname + "/fixtures/rule.yaml"]
+            }
+        },
+        {
+            text: "```js\n" + "// jquery is wrong, but this check is not by default\n" + "```",
+            options: {
+                checkCodeComment: [],
+                rulePaths: [__dirname + "/fixtures/rule.yaml"]
+            }
+        },
+        // empty code block
+        {
+            text: "```js\n" + "```",
+            options: {
+                checkCodeComment: ["js"],
+                rulePaths: [__dirname + "/fixtures/rule.yaml"]
+            }
+        },
+        // The CodeBlock includes invalid syntax, it is just ignored
+        {
+            text: "```js\n" + "+++++++\n" + "// jquery\n" + "```",
+            options: {
+                checkCodeComment: ["js"],
+                rulePaths: [__dirname + "/fixtures/rule.yaml"]
+            }
         }
     ],
     invalid: [
@@ -211,6 +241,71 @@ tester.run("prh", rule, {
                     }
                 }
             ]
+        },
+        // comment
+        {
+            text: "```js\n" + "// $ is jquery\n" + "const $ = jquery;\n" + "```",
+            output: "```js\n" + "// $ is jQuery\n" + "const $ = jquery;\n" + "```",
+            errors: [
+                {
+                    index: 14,
+                    message: "jquery => jQuery"
+                }
+            ],
+            options: {
+                checkCodeComment: ["js"],
+                rulePaths: [__dirname + "/fixtures/rule.yaml"]
+            }
+        },
+        // BlockComment
+        {
+            text: "```js\n" + "/**\n" + " * $ is jquery\n" + " **/" + "const $ = jquery;\n" + "```",
+            output: "```js\n" + "/**\n" + " * $ is jQuery\n" + " **/" + "const $ = jquery;\n" + "```",
+            errors: [
+                {
+                    index: 18,
+                    message: "jquery => jQuery"
+                }
+            ],
+            options: {
+                checkCodeComment: ["js"],
+                rulePaths: [__dirname + "/fixtures/rule.yaml"]
+            }
+        },
+        // BlockComment multiple
+        {
+            text:
+                "```javascript\n" +
+                "/**\n" +
+                " * $ is jquery\n" +
+                " **/" +
+                "/**\n" +
+                " * cookie is Cookie\n" +
+                " **/\n" +
+                "```",
+            output:
+                "```javascript\n" +
+                "/**\n" +
+                " * $ is jQuery\n" +
+                " **/" +
+                "/**\n" +
+                " * Cookie is Cookie\n" +
+                " **/\n" +
+                "```",
+            errors: [
+                {
+                    index: 26,
+                    message: "jquery => jQuery"
+                },
+                {
+                    index: 44,
+                    message: "cookie => Cookie"
+                }
+            ],
+            options: {
+                checkCodeComment: ["javascript"],
+                rulePaths: [__dirname + "/fixtures/rule.yaml"]
+            }
         },
         // example-prh.yml
         {
