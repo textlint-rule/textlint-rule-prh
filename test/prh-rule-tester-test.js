@@ -5,6 +5,8 @@ var tester = new TextLintTester();
 // rule
 import rule from "../src/textlint-rule-prh";
 // ruleName, rule, { valid, invalid }
+const CODE_START_JS = "```js";
+const CODE_END = "```";
 tester.run("prh", rule, {
     valid: [
         {
@@ -27,14 +29,14 @@ tester.run("prh", rule, {
             }
         },
         {
-            text: "```js\n" + "\n" + "\n" + "\n" + "// JavaScript\n" + "var a = 1;\n" + "```",
+            text: `${CODE_START_JS}\n" + "\n" + "\n" + "// JavaScript\n" + "var a = 1;\n${CODE_END}`,
             options: {
                 checkCodeComment: ["js"],
                 rulePaths: [__dirname + "/fixtures/rule.yaml"]
             }
         },
         {
-            text: "```js\n" + "// jquery is wrong, but this check is not by default\n" + "```",
+            text: `${CODE_START_JS}// jquery is wrong, but this check is not by default\n${CODE_END}`,
             options: {
                 checkCodeComment: [],
                 rulePaths: [__dirname + "/fixtures/rule.yaml"]
@@ -42,7 +44,7 @@ tester.run("prh", rule, {
         },
         // empty code block
         {
-            text: "```js\n" + "```",
+            text: `${CODE_START_JS}${CODE_END}`,
             options: {
                 checkCodeComment: ["js"],
                 rulePaths: [__dirname + "/fixtures/rule.yaml"]
@@ -50,7 +52,10 @@ tester.run("prh", rule, {
         },
         // The CodeBlock includes invalid syntax, it is just ignored
         {
-            text: "```js\n" + "+++++++\n" + "// jquery\n" + "```",
+            text: `${CODE_START_JS}
++++++++
+// jquery
+${CODE_START_JS}`,
             options: {
                 checkCodeComment: ["js"],
                 rulePaths: [__dirname + "/fixtures/rule.yaml"]
@@ -244,8 +249,14 @@ tester.run("prh", rule, {
         },
         // comment
         {
-            text: "```js\n" + "// $ is jquery\n" + "const $ = jquery;\n" + "```",
-            output: "```js\n" + "// $ is jQuery\n" + "const $ = jquery;\n" + "```",
+            text: `${CODE_START_JS}
+// $ is jquery
+const $ = jquery;
+${CODE_END}`,
+            output: `${CODE_START_JS}
+// $ is jQuery
+const $ = jquery;
+${CODE_END}`,
             errors: [
                 {
                     index: 14,
@@ -259,8 +270,18 @@ tester.run("prh", rule, {
         },
         // BlockComment
         {
-            text: "```js\n" + "/**\n" + " * $ is jquery\n" + " **/" + "const $ = jquery;\n" + "```",
-            output: "```js\n" + "/**\n" + " * $ is jQuery\n" + " **/" + "const $ = jquery;\n" + "```",
+            text: `${CODE_START_JS}
+/**
+ * $ is jquery
+ **/
+const $ = jquery;
+${CODE_END}`,
+            output: `${CODE_START_JS}
+/**
+ * $ is jQuery
+ **/
+const $ = jquery;
+${CODE_END}`,
             errors: [
                 {
                     index: 18,
