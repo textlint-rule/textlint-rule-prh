@@ -54,7 +54,7 @@ You can use `~` as Home directory abbreviation.
 - `checkHeader`(optional) : Check `Header` node type (default: `true`)
 - `checkCodeComment`(optional) : Check `CodeBlock` node's comment for `lang` (default: `[]`)
     - Set `lang` array like `["<codeblock-lang>"]` for checking CodeBlock
-    - For example, If you want to check JavaScript CodeBlock, set `{ "checkCodeComment": ["js", "javascript"] }` Options
+    - Example: If you want to check JavaScript CodeBlock, set `{ "checkCodeComment": ["js", "javascript"] }` Options
     - **Note:** Currently only support JavaScript CodeBlock
         - It use [@babel/parser](https://babeljs.io/docs/en/babel-parser) 
 
