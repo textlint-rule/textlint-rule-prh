@@ -5,6 +5,8 @@ var tester = new TextLintTester();
 // rule
 import rule from "../src/textlint-rule-prh";
 // ruleName, rule, { valid, invalid }
+const CODE_START_JS = "```js";
+const CODE_END = "```";
 tester.run("prh", rule, {
     valid: [
         {
@@ -24,6 +26,39 @@ tester.run("prh", rule, {
             options: {
                 rulePaths: [__dirname + "/fixtures/rule.yaml"],
                 checkHeader: false
+            }
+        },
+        {
+            text: `${CODE_START_JS}\n" + "\n" + "\n" + "// JavaScript\n" + "var a = 1;\n${CODE_END}`,
+            options: {
+                checkCodeComment: ["js"],
+                rulePaths: [__dirname + "/fixtures/rule.yaml"]
+            }
+        },
+        {
+            text: `${CODE_START_JS}// jquery is wrong, but this check is not by default\n${CODE_END}`,
+            options: {
+                checkCodeComment: [],
+                rulePaths: [__dirname + "/fixtures/rule.yaml"]
+            }
+        },
+        // empty code block
+        {
+            text: `${CODE_START_JS}${CODE_END}`,
+            options: {
+                checkCodeComment: ["js"],
+                rulePaths: [__dirname + "/fixtures/rule.yaml"]
+            }
+        },
+        // The CodeBlock includes invalid syntax, it is just ignored
+        {
+            text: `${CODE_START_JS}
++++++++
+// jquery
+${CODE_START_JS}`,
+            options: {
+                checkCodeComment: ["js"],
+                rulePaths: [__dirname + "/fixtures/rule.yaml"]
             }
         }
     ],
@@ -211,6 +246,87 @@ tester.run("prh", rule, {
                     }
                 }
             ]
+        },
+        // comment
+        {
+            text: `${CODE_START_JS}
+// $ is jquery
+const $ = jquery;
+${CODE_END}`,
+            output: `${CODE_START_JS}
+// $ is jQuery
+const $ = jquery;
+${CODE_END}`,
+            errors: [
+                {
+                    index: 14,
+                    message: "jquery => jQuery"
+                }
+            ],
+            options: {
+                checkCodeComment: ["js"],
+                rulePaths: [__dirname + "/fixtures/rule.yaml"]
+            }
+        },
+        // BlockComment
+        {
+            text: `${CODE_START_JS}
+/**
+ * $ is jquery
+ **/
+const $ = jquery;
+${CODE_END}`,
+            output: `${CODE_START_JS}
+/**
+ * $ is jQuery
+ **/
+const $ = jquery;
+${CODE_END}`,
+            errors: [
+                {
+                    index: 18,
+                    message: "jquery => jQuery"
+                }
+            ],
+            options: {
+                checkCodeComment: ["js"],
+                rulePaths: [__dirname + "/fixtures/rule.yaml"]
+            }
+        },
+        // BlockComment multiple
+        {
+            text:
+                "```javascript\n" +
+                "/**\n" +
+                " * $ is jquery\n" +
+                " **/" +
+                "/**\n" +
+                " * cookie is Cookie\n" +
+                " **/\n" +
+                "```",
+            output:
+                "```javascript\n" +
+                "/**\n" +
+                " * $ is jQuery\n" +
+                " **/" +
+                "/**\n" +
+                " * Cookie is Cookie\n" +
+                " **/\n" +
+                "```",
+            errors: [
+                {
+                    index: 26,
+                    message: "jquery => jQuery"
+                },
+                {
+                    index: 44,
+                    message: "cookie => Cookie"
+                }
+            ],
+            options: {
+                checkCodeComment: ["javascript"],
+                rulePaths: [__dirname + "/fixtures/rule.yaml"]
+            }
         },
         // example-prh.yml
         {

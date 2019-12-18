@@ -1,6 +1,8 @@
 // LICENSE : MIT
 "use strict";
 import { RuleHelper } from "textlint-rule-helper";
+
+import { parse } from "@babel/parser";
 /**
  * RegExp#flags polyfill
  */
@@ -21,7 +23,16 @@ const defaultOptions = {
     checkLink: false,
     checkBlockQuote: false,
     checkEmphasis: false,
-    checkHeader: true
+    checkHeader: true,
+    /**
+     * Check CodeBlock text
+     * Default: []
+     */
+    checkCodeComment: [],
+    /**
+     * Report parsing error for debug
+     */
+    debug: false
 };
 
 function createPrhEngine(rulePaths, baseDir) {
@@ -144,6 +155,38 @@ const getConfigBaseDir = context => {
     return textlintRcFilePath ? path.dirname(textlintRcFilePath) : process.cwd();
 };
 
+/**
+ * [Markdown] get actual code value from CodeBlock node
+ * @param {Object} node
+ * @param {string} raw raw value include CodeBlock syntax
+ * @returns {string}
+ */
+function getUntrimmedCode(node, raw) {
+    if (node.type !== "CodeBlock") {
+        return node.value;
+    }
+    // Space indented CodeBlock that has not lang
+    if (!node.lang) {
+        return node.value;
+    }
+
+    // If it is not markdown codeBlock, just use node.value
+    if (!(raw.startsWith("```") && raw.endsWith("```"))) {
+        if (node.value.endsWith("\n")) {
+            return node.value;
+        }
+        return node.value + "\n";
+    }
+    // Markdown(remark) specific hack
+    // https://github.com/wooorm/remark/issues/207#issuecomment-244620590
+    const lines = raw.split("\n");
+    // code lines without the first line and the last line
+    const codeLines = lines.slice(1, lines.length - 1);
+    // add last new line
+    // \n```
+    return codeLines.join("\n") + "\n";
+}
+
 function reporter(context, userOptions = {}) {
     assertOptions(userOptions);
     const options = Object.assign({}, defaultOptions, userOptions);
@@ -159,6 +202,8 @@ function reporter(context, userOptions = {}) {
     const helper = new RuleHelper(context);
     const { Syntax, getSource, report, fixer, RuleError } = context;
     const ignoreNodeTypes = createIgnoreNodeTypes(options, Syntax);
+    const codeCommentTypes = options.checkCodeComment ? options.checkCodeComment : defaultOptions.checkCodeComment;
+    const isDebug = options.debug ? options.debug : defaultOptions.debug;
     return {
         [Syntax.Str](node) {
             if (helper.isChildNode(node, ignoreNodeTypes)) {
@@ -185,6 +230,71 @@ function reporter(context, userOptions = {}) {
                     })
                 );
             });
+        },
+        [Syntax.CodeBlock](node) {
+            const lang = node.lang;
+            if (!lang) {
+                return;
+            }
+            const checkLang = codeCommentTypes.some(type => {
+                return type === node.lang;
+            });
+            if (!checkLang) {
+                return;
+            }
+            const rawText = getSource(node);
+            const codeText = getUntrimmedCode(node, rawText);
+            const sourceBlockDiffIndex = rawText !== node.value ? rawText.indexOf(codeText) : 0;
+            const reportComment = comment => {
+                // to get position from index
+                // https://github.com/prh/prh/issues/29
+                const dummyFilePath = "";
+                // TODO: trim option for value?
+                const text = comment.value;
+                const makeChangeSet = prhEngine.makeChangeSet(dummyFilePath, text);
+                forEachChange(makeChangeSet, text, ({ matchStartIndex, matchEndIndex, actual, expected, prh }) => {
+                    // If result is not changed, should not report
+                    if (actual === expected) {
+                        return;
+                    }
+
+                    const suffix = prh !== null ? "\n" + prh : "";
+                    const messages = actual + " => " + expected + suffix;
+                    const commentIdentifier = comment.type === "CommentBlock" ? "/*" : "//";
+                    const commentStart = sourceBlockDiffIndex + comment.start + commentIdentifier.length;
+                    report(
+                        node,
+                        new RuleError(messages, {
+                            index: commentStart + matchStartIndex,
+                            fix: fixer.replaceTextRange(
+                                [commentStart + matchStartIndex, commentStart + matchEndIndex],
+                                expected
+                            )
+                        })
+                    );
+                });
+            };
+            try {
+                const AST = parse(codeText, {
+                    ranges: true,
+                    allowReturnOutsideFunction: true,
+                    allowAwaitOutsideFunction: true,
+                    allowUndeclaredExports: true,
+                    allowSuperOutsideMethod: true
+                });
+                const comments = AST.comments;
+                if (!comments) {
+                    return;
+                }
+                comments.forEach(comment => {
+                    reportComment(comment);
+                });
+            } catch (error) {
+                if (isDebug) {
+                    console.error(error);
+                    report(node, new RuleError(error.message));
+                }
+            }
         }
     };
 }
