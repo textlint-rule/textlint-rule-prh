@@ -265,10 +265,10 @@
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.7.4.tgz#75ab2d7110c2cf2fa949959afb05fa346d2231bb"
   integrity sha512-jIwvLO0zCL+O/LmEJQjWA75MQTWwx3c3u2JOTDK5D3/9egrWRRA0/0hk9XXywYnXZVVpzrBYeIQTmhwUaePI9g==
 
-"@babel/parser@^7.7.5":
-  version "7.7.5"
-  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.7.5.tgz#cbf45321619ac12d83363fcf9c94bb67fa646d71"
-  integrity sha512-KNlOe9+/nk4i29g0VXgl8PEXIRms5xKLJeuZ6UptN0fHv+jDiriG+y94X6qAgWTR0h3KaoM1wK5G5h7MHFRSig==
+"@babel/parser@^7.7.7":
+  version "7.7.7"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.7.7.tgz#1b886595419cf92d811316d5b715a53ff38b4937"
+  integrity sha512-WtTZMZAZLbeymhkd/sEaPD8IQyGAhmuTuvTzLiCFM7iXiVdY0gc0IaI+cW0fh1BnSMbJSzXX6/fHllgHKwHhXw==
 
 "@babel/plugin-proposal-async-generator-functions@^7.7.4":
   version "7.7.4"
@@ -1384,13 +1384,6 @@ commandpost@^1.2.1:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/commandpost/-/commandpost-1.4.0.tgz#89218012089dfc9b67a337ba162f15c88e0f1048"
   integrity sha512-aE2Y4MTFJ870NuB/+2z1cXBhSBBzRydVVjzhFC4gtenEhpnj15yu0qptWGJsO9YGrcPZ3ezX8AWb1VA391MKpQ==
-
-comment-patterns@^0.10.0:
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/comment-patterns/-/comment-patterns-0.10.1.tgz#4c8a876327f76c09bfb8306272f997f1e317b953"
-  integrity sha512-fKtMiKJAYvwd66zxY5TwNeqmcAr7N3Xjua5Abcrp1cF7QLk2gT8zi2ZWnvNYDwoKheKwvQUJttpHSgQSODjw+g==
-  dependencies:
-    lodash "^4.17.11"
 
 commondir@^1.0.1:
   version "1.0.1"
@@ -2617,11 +2610,6 @@ levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-line-counter@^1.0.3:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/line-counter/-/line-counter-1.1.0.tgz#10df2c046ad3546e724fba55fa72cde18a6a01f3"
-  integrity sha1-EN8sBGrTVG5yT7pV+nLN4YpqAfM=
-
 lines-and-columns@^1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
@@ -2735,7 +2723,7 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
-lodash@^4.0.0, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.15:
+lodash@^4.0.0, lodash@^4.17.13, lodash@^4.17.15:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
@@ -2987,16 +2975,6 @@ ms@^2.1.1:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
-
-multilang-extract-comments@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/multilang-extract-comments/-/multilang-extract-comments-0.3.2.tgz#cf19f3c98661de793da6ba0ff5e62b837d0247b8"
-  integrity sha512-H/+eHndsWbGqqQ7FMaYj+1NwFSb0KZFsbWeSGvKz6o1YJMYXFVGLnA6d8f7lSNRQ/wiTLWTmLpOtNyQwaKzgig==
-  dependencies:
-    comment-patterns "^0.10.0"
-    line-counter "^1.0.3"
-    lodash "^4.17.11"
-    quotemeta "0.0.0"
 
 nan@^2.12.1:
   version "2.14.0"
@@ -3549,11 +3527,6 @@ pump@^3.0.0:
   dependencies:
     end-of-stream "^1.1.0"
     once "^1.3.1"
-
-quotemeta@0.0.0:
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/quotemeta/-/quotemeta-0.0.0.tgz#51d3a06ee0fcd6e3b501dbd28904351ad7a5a38c"
-  integrity sha1-UdOgbuD81uO1AdvSiQQ1Gtelo4w=
 
 rc-config-loader@^3.0.0:
   version "3.0.0"
