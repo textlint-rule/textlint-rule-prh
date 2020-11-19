@@ -1,4 +1,4 @@
-# textlint-rule-prh [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) [![Build Status](https://travis-ci.org/textlint-rule/textlint-rule-prh.svg?branch=master)](https://travis-ci.org/textlint-rule/textlint-rule-prh)
+# textlint-rule-prh [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) [![Actions Status: test](https://github.com/textlint-rule/textlint-rule-prh/workflows/test/badge.svg)](https://github.com/textlint-rule/textlint-rule-prh/actions?query=workflow%3A"test")
 
 [textlint](https://github.com/textlint-rule/textlint "textlint") rule for [prh/prh: proofreading helper](https://github.com/prh/prh "prh/prh: proofreading helper").
 
