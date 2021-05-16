@@ -901,7 +901,7 @@
     readdirp "^2.2.1"
     upath "^1.1.1"
 
-"@textlint/ast-node-types@^4.2.1", "@textlint/ast-node-types@^4.3.4":
+"@textlint/ast-node-types@^4.3.4":
   version "4.3.4"
   resolved "https://registry.yarnpkg.com/@textlint/ast-node-types/-/ast-node-types-4.3.4.tgz#f6596c45c32c85dc06915c3077bb7686033efd32"
   integrity sha512-Grq+vJuNH7HCa278eFeiqJvowrD+onMCoG2ctLyoN+fXYIQGIr1/8fo8AcIg+VM16Kga+N6Y1UWNOWPd8j1nFg==
@@ -1150,7 +1150,7 @@
   dependencies:
     "@textlint/text-to-ast" "^3.3.5"
 
-"@textlint/types@^1.1.2", "@textlint/types@^1.4.5":
+"@textlint/types@^1.4.5":
   version "1.4.5"
   resolved "https://registry.yarnpkg.com/@textlint/types/-/types-1.4.5.tgz#11c8e0140256e0ead8014a701a05f267d1132d4e"
   integrity sha512-7pA1rdiw1jsDNGwxupMC6fPlRNAHY6fKZ3s+jAY53o6RroOSR+5qO0sAjJ26lsSOhveH8imZzyyD08dk58IVJQ==
@@ -4233,13 +4233,13 @@ text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
 
-textlint-rule-helper@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/textlint-rule-helper/-/textlint-rule-helper-2.1.1.tgz#d572588685359134bc779939b217e61f087dab0f"
-  integrity sha512-6fxgHzoJVkjl3LaC1b2Egi+5wbhG4i0pU0knJmQujVhxIJ3D3AcQQZPs457xKAi5xKz1WayYeTeJ5jrD/hnO7g==
+textlint-rule-helper@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/textlint-rule-helper/-/textlint-rule-helper-2.2.0.tgz#30522ba904a03849d57ea3e5ebd5920027cd8da3"
+  integrity sha512-9S5CsgQuQwPjM2wvr4JGdpkLf+pR9gOjedSQFa/Dkrbh+D9MXt1LIR4Jvx1RujKtt2nq42prmEX2q3xOxyUcIQ==
   dependencies:
-    "@textlint/ast-node-types" "^4.2.1"
-    "@textlint/types" "^1.1.2"
+    "@textlint/ast-node-types" "^4.4.3"
+    "@textlint/types" "^1.5.5"
     structured-source "^3.0.2"
     unist-util-visit "^1.1.0"
 
