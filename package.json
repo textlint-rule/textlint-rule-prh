@@ -36,7 +36,7 @@
     "@babel/parser": "^7.14.2",
     "prh": "^5.4.4",
     "textlint-rule-helper": "^2.2.0",
-    "untildify": "^3.0.3"
+    "untildify": "^4.0.0"
   },
   "devDependencies": {
     "husky": "4.3.8",
