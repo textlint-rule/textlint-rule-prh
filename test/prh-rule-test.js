@@ -30,8 +30,7 @@ describe("prh-rule-test", function () {
     });
     context("when match word and s/） /）/ pattern", function () {
         it("should report error", function () {
-            // remark@12 trim the space first and last
-            // https://twitter.com/azu_re/status/1396704390719836161
+            // remark@9 trim the space first and last
             return textlint.lintMarkdown("THIS（図1） 。").then((result) => {
                 assert(result.messages.length > 0);
                 assert(result.messages[0].line === 1);
