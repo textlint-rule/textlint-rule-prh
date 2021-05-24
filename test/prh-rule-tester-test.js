@@ -1,9 +1,7 @@
-// LICENSE : MIT
-"use strict";
-var TextLintTester = require("textlint-tester");
-var tester = new TextLintTester();
+import TextLintTester from "textlint-tester";
 // rule
 import rule from "../src/textlint-rule-prh";
+const tester = new TextLintTester();
 // ruleName, rule, { valid, invalid }
 const CODE_START_JS = "```js";
 const CODE_END = "```";
