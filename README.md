@@ -191,7 +191,7 @@ imports:
 
 ## Example
 
-See [textlint-rule/prh-textlint-example: Example of textlint + prh.](https://github.com/textlint-rule/prh-textlint-example "textlint-rule/prh-textlint-example: Example of textlint + prh.").
+See [example-prh.yml](https://github.com/textlint-rule/textlint-rule-prh/blob/master/test/fixtures/example-prh.yml).
 
 
 ## Tests
