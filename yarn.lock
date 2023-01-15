@@ -1364,10 +1364,15 @@
   resolved "https://registry.yarnpkg.com/@nicolo-ribaudo/chokidar-2/-/chokidar-2-2.1.8-no-fsevents.3.tgz#323d72dd25103d0c4fbdce89dadf574a787b1f9b"
   integrity sha512-s88O1aVtXftvp5bCPB7WnmXc5IwOZZ7YPuwNPt+GtOOXpPvad1LfbmjYv+qII7zP6RU2QGnqve27dnLycEnyEQ==
 
-"@textlint/ast-node-types@^12.1.0", "@textlint/ast-node-types@^12.2.2":
+"@textlint/ast-node-types@^12.2.2":
   version "12.2.2"
   resolved "https://registry.yarnpkg.com/@textlint/ast-node-types/-/ast-node-types-12.2.2.tgz#299c4035d26a2be8fe76bcb66798a8e82a5eb77c"
   integrity sha512-VQAXUSGdmEajHXrMxeM9ZTS8UBJSVB0ghJFHpFfqYKlcDsjIqClSmTprY6521HoCoSLoUIGBxTC3jQyUMJFIWw==
+
+"@textlint/ast-node-types@^12.3.0":
+  version "12.3.0"
+  resolved "https://registry.yarnpkg.com/@textlint/ast-node-types/-/ast-node-types-12.3.0.tgz#3eb52ca2d7234ad8e015a1fc104ab15945a25e1f"
+  integrity sha512-ke5hlKy/xZ/vQt6j+h4k9GradJPDsV3FKsUqWpCpF/X8qWCU2zM4e1SMUAFjoUcLuF9in+eXIQ71Qm/AdjjkZQ==
 
 "@textlint/ast-tester@^12.2.3":
   version "12.2.3"
@@ -1692,6 +1697,11 @@ boundary@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/boundary/-/boundary-1.0.1.tgz#4d67dc2602c0cc16dd9bce7ebf87e948290f5812"
   integrity sha1-TWfcJgLAzBbdm85+v4fpSCkPWBI=
+
+boundary@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/boundary/-/boundary-2.0.0.tgz#169c8b1f0d44cf2c25938967a328f37e0a4e5efc"
+  integrity sha512-rJKn5ooC9u8q13IMCrW0RSp31pxBCHE3y9V/tp3TdWSLf8Em3p6Di4NBpfzbJge9YjjFEsD0RtFEjtvHL5VyEA==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -4023,6 +4033,13 @@ structured-source@^3.0.2:
   dependencies:
     boundary "^1.0.1"
 
+structured-source@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/structured-source/-/structured-source-4.0.0.tgz#0c9e59ee43dedd8fc60a63731f60e358102a4948"
+  integrity sha512-qGzRFNJDjFieQkl/sVOI2dUjHKRyL9dAJi2gCPGJLbJHBIkyOHxjuocpIEfbLioX+qSJpvbYdT49/YCdMznKxA==
+  dependencies:
+    boundary "^2.0.0"
+
 supports-color@8.1.1:
   version "8.1.1"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-8.1.1.tgz#cd6fc17e28500cff56c1b86c0a7fd4a54a73005c"
@@ -4065,13 +4082,13 @@ text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
 
-textlint-rule-helper@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/textlint-rule-helper/-/textlint-rule-helper-2.2.3.tgz#23ff41790aa0d34f3bc9be3c379fb9d5bd28302f"
-  integrity sha512-H499NRHVurHTFXTL+w/FI+aX6YgZD1TAFuR6kHqYDQ2ArGwkCbnRu+so+deweTFEUI4etP7EVMsrLwXP1e2Q+w==
+textlint-rule-helper@^2.2.4:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/textlint-rule-helper/-/textlint-rule-helper-2.2.4.tgz#32a69a2658b2f0845ddd835c0c1f307f698e4c10"
+  integrity sha512-aQDn83+L6uG8tA6IjAsfFLWxR0/OJg51/C0k6OxNuGJnn/rgQnX+6Lh/bWh9dJ0RmOIQk7VkZ1uHUny5PXkjwQ==
   dependencies:
-    "@textlint/ast-node-types" "^12.1.0"
-    structured-source "^3.0.2"
+    "@textlint/ast-node-types" "^12.3.0"
+    structured-source "^4.0.0"
     unist-util-visit "^2.0.3"
 
 textlint-scripts@^12.2.4:
