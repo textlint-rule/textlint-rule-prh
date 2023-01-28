@@ -43,7 +43,7 @@
     "lint-staged": "^12.5.0",
     "prettier": "^2.3.0",
     "textlint": "12.2.4",
-    "textlint-scripts": "^12.2.4"
+    "textlint-scripts": "^13.0.1"
   },
   "prettier": {
     "singleQuote": false,
