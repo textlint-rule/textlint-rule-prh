@@ -34,16 +34,16 @@
     "prh"
   ],
   "dependencies": {
-    "@babel/parser": "^7.20.7",
+    "@babel/parser": "^7.20.13",
     "prh": "^5.4.4",
     "textlint-rule-helper": "^2.2.4",
     "untildify": "^4.0.0"
   },
   "devDependencies": {
-    "lint-staged": "^12.5.0",
-    "prettier": "^2.3.0",
-    "textlint": "12.2.4",
-    "textlint-scripts": "^12.2.4"
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.8.3",
+    "textlint": "13.0.1",
+    "textlint-scripts": "^13.0.1"
   },
   "prettier": {
     "singleQuote": false,
