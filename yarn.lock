@@ -3532,7 +3532,7 @@ textlint-rule-helper@^2.3.0:
     structured-source "^4.0.0"
     unist-util-visit "^2.0.3"
 
-textlint-scripts@^13.2.0:
+textlint-scripts@^13.3.0:
   version "13.3.0"
   resolved "https://registry.yarnpkg.com/textlint-scripts/-/textlint-scripts-13.3.0.tgz#883b271ca7893c8d00c8928259d2b701a81df88b"
   integrity sha512-vxqKCYDBMeo9lAbBI1G/4u7qzlt3zPE+YAgCTlhwiziqmQmLXEpz3HxRnW+8z+gW/Wnkr+j1FeAoKAlfnp30gA==
