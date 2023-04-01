@@ -42,8 +42,8 @@
   "devDependencies": {
     "lint-staged": "^13.2.0",
     "prettier": "^2.8.3",
-    "textlint": "13.3.1",
-    "textlint-scripts": "^13.3.1"
+    "textlint": "13.3.2",
+    "textlint-scripts": "^13.3.2"
   },
   "prettier": {
     "singleQuote": false,
