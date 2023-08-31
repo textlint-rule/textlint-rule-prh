@@ -34,7 +34,7 @@
     "prh"
   ],
   "dependencies": {
-    "@babel/parser": "^7.22.10",
+    "@babel/parser": "^7.22.11",
     "prh": "^5.4.4",
     "textlint-rule-helper": "^2.3.0",
     "untildify": "^4.0.0"
