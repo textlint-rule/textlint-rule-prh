@@ -36,14 +36,14 @@
   "dependencies": {
     "@babel/parser": "^7.23.4",
     "prh": "^5.4.4",
-    "textlint-rule-helper": "^2.3.0",
+    "textlint-rule-helper": "^2.3.1",
     "untildify": "^4.0.0"
   },
   "devDependencies": {
     "lint-staged": "^13.3.0",
     "prettier": "^2.8.3",
-    "textlint": "13.4.0",
-    "textlint-scripts": "^13.4.0"
+    "textlint": "13.4.1",
+    "textlint-scripts": "^13.4.1"
   },
   "prettier": {
     "singleQuote": false,
