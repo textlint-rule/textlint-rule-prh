@@ -37,7 +37,7 @@
     "@babel/parser": "^7.23.4",
     "prh": "^5.4.4",
     "textlint-rule-helper": "^2.3.1",
-    "untildify": "^4.0.0"
+    "untildify": "^5.0.0"
   },
   "devDependencies": {
     "lint-staged": "^13.3.0",
