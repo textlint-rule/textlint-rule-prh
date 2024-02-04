@@ -1,24 +1,15 @@
 // LICENSE : MIT
-"use strict";
 import { RuleHelper } from "textlint-rule-helper";
-
 import { parse } from "@babel/parser";
-/**
- * RegExp#flags polyfill
- */
-if (RegExp.prototype.flags === undefined) {
-    Object.defineProperty(RegExp.prototype, "flags", {
-        configurable: true,
-        get: function() {
-            return this.toString().match(/[gimuy]*$/)[0];
-        }
-    });
-}
+import { fromYAMLFilePath, fromYAML } from "prh";
+import path from "node:path";
+import os from "node:os";
 
-const prh = require("prh");
-const path = require("path");
-const untildify = require("untildify");
+const homeDirectory = os.homedir();
 
+const untildify = (filePath) => {
+    return homeDirectory ? filePath.replace(/^~(?=$|\/|\\)/, homeDirectory) : filePath;
+};
 const defaultOptions = {
     checkLink: false,
     checkBlockQuote: false,
@@ -39,10 +30,10 @@ function createPrhEngine(rulePaths, baseDir) {
     if (rulePaths.length === 0) {
         return null;
     }
-    const expandedRulePaths = rulePaths.map(rulePath => untildify(rulePath));
-    const prhEngine = prh.fromYAMLFilePath(path.resolve(baseDir, expandedRulePaths[0]));
-    expandedRulePaths.slice(1).forEach(ruleFilePath => {
-        const config = prh.fromYAMLFilePath(path.resolve(baseDir, ruleFilePath));
+    const expandedRulePaths = rulePaths.map((rulePath) => untildify(rulePath));
+    const prhEngine = fromYAMLFilePath(path.resolve(baseDir, expandedRulePaths[0]));
+    expandedRulePaths.slice(1).forEach((ruleFilePath) => {
+        const config = fromYAMLFilePath(path.resolve(baseDir, ruleFilePath));
         prhEngine.merge(config);
     });
     return prhEngine;
@@ -53,24 +44,24 @@ function createPrhEngineFromContents(yamlContents) {
         return null;
     }
     const dummyFilePath = "";
-    const prhEngine = prh.fromYAML(dummyFilePath, yamlContents[0]);
-    yamlContents.slice(1).forEach(content => {
-        const config = prh.fromYAML(dummyFilePath, content);
+    const prhEngine = fromYAML(dummyFilePath, yamlContents[0]);
+    yamlContents.slice(1).forEach((content) => {
+        const config = fromYAML(dummyFilePath, content);
         prhEngine.merge(config);
     });
     return prhEngine;
 }
 
 function mergePrh(...engines) {
-    const engines_ = engines.filter(engine => !!engine);
+    const engines_ = engines.filter((engine) => !!engine);
     const mainEngine = engines_[0];
-    engines_.slice(1).forEach(engine => {
+    engines_.slice(1).forEach((engine) => {
         mainEngine.merge(engine);
     });
     return mainEngine;
 }
 
-const assertOptions = options => {
+const assertOptions = (options) => {
     if (typeof options.ruleContents === "undefined" && typeof options.rulePaths === "undefined") {
         throw new Error(`textlint-rule-prh require Rule Options.
 Please set .textlintrc:
@@ -107,19 +98,19 @@ const createIgnoreNodeTypes = (options, Syntax) => {
  * @param {ChangeSet} changeSet
  * @param {string} str
  * @param {function({
-            matchStartIndex: number,
-            matchEndIndex: number,
-            actual: string
-            expected: string
-        })}onChangeOfMatch
+ matchStartIndex: number,
+ matchEndIndex: number,
+ actual: string
+ expected: string
+ })}onChangeOfMatch
  */
 const forEachChange = (changeSet, str, onChangeOfMatch) => {
-    const sortedDiffs = changeSet.diffs.sort(function(a, b) {
+    const sortedDiffs = changeSet.diffs.sort(function (a, b) {
         return a.index - b.index;
     });
     let delta = 0;
-    sortedDiffs.forEach(function(diff) {
-        const result = diff.expected.replace(/\$([0-9]{1,2})/g, function(match, g1) {
+    sortedDiffs.forEach(function (diff) {
+        const result = diff.expected.replace(/\$([0-9]{1,2})/g, function (match, g1) {
             const index = parseInt(g1);
             if (index === 0 || diff.matches.length - 1 < index) {
                 return match;
@@ -144,7 +135,7 @@ const forEachChange = (changeSet, str, onChangeOfMatch) => {
         delta += result.length - diff.matches[0].length;
     });
 };
-const getConfigBaseDir = context => {
+const getConfigBaseDir = (context) => {
     if (typeof context.getConfigBaseDir === "function") {
         return context.getConfigBaseDir() || process.cwd();
     }
@@ -236,7 +227,7 @@ function reporter(context, userOptions = {}) {
             if (!lang) {
                 return;
             }
-            const checkLang = codeCommentTypes.some(type => {
+            const checkLang = codeCommentTypes.some((type) => {
                 return type === node.lang;
             });
             if (!checkLang) {
@@ -245,7 +236,7 @@ function reporter(context, userOptions = {}) {
             const rawText = getSource(node);
             const codeText = getUntrimmedCode(node, rawText);
             const sourceBlockDiffIndex = rawText !== node.value ? rawText.indexOf(codeText) : 0;
-            const reportComment = comment => {
+            const reportComment = (comment) => {
                 // to get position from index
                 // https://github.com/prh/prh/issues/29
                 const dummyFilePath = "";
@@ -286,7 +277,7 @@ function reporter(context, userOptions = {}) {
                 if (!comments) {
                     return;
                 }
-                comments.forEach(comment => {
+                comments.forEach((comment) => {
                     reportComment(comment);
                 });
             } catch (error) {
@@ -299,7 +290,7 @@ function reporter(context, userOptions = {}) {
     };
 }
 
-module.exports = {
+export default {
     linter: reporter,
     fixer: reporter
 };

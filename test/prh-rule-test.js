@@ -1,8 +1,10 @@
 // LICENSE : MIT
 "use strict";
 import assert from "assert";
-import { textlint } from "textlint";
+import { TextLintCore } from "@textlint/legacy-textlint-core";
 import rule from "../src/textlint-rule-prh";
+
+const textlint = new TextLintCore();
 describe("prh-rule-test", function () {
     beforeEach(function () {
         textlint.setupRules(
