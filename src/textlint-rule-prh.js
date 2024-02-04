@@ -290,7 +290,7 @@ function reporter(context, userOptions = {}) {
     };
 }
 
-module.exports = {
+export default {
     linter: reporter,
     fixer: reporter
 };
