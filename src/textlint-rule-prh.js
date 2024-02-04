@@ -1,9 +1,10 @@
 // LICENSE : MIT
 import { RuleHelper } from "textlint-rule-helper";
 import { parse } from "@babel/parser";
-import * as prh from "prh";
+import { fromYAMLFilePath, fromYAML } from "prh";
 import path from "node:path";
 import os from "node:os";
+
 const homeDirectory = os.homedir();
 
 const untildify = (filePath) => {
@@ -30,9 +31,9 @@ function createPrhEngine(rulePaths, baseDir) {
         return null;
     }
     const expandedRulePaths = rulePaths.map((rulePath) => untildify(rulePath));
-    const prhEngine = prh.fromYAMLFilePath(path.resolve(baseDir, expandedRulePaths[0]));
+    const prhEngine = fromYAMLFilePath(path.resolve(baseDir, expandedRulePaths[0]));
     expandedRulePaths.slice(1).forEach((ruleFilePath) => {
-        const config = prh.fromYAMLFilePath(path.resolve(baseDir, ruleFilePath));
+        const config = fromYAMLFilePath(path.resolve(baseDir, ruleFilePath));
         prhEngine.merge(config);
     });
     return prhEngine;
@@ -43,9 +44,9 @@ function createPrhEngineFromContents(yamlContents) {
         return null;
     }
     const dummyFilePath = "";
-    const prhEngine = prh.fromYAML(dummyFilePath, yamlContents[0]);
+    const prhEngine = fromYAML(dummyFilePath, yamlContents[0]);
     yamlContents.slice(1).forEach((content) => {
-        const config = prh.fromYAML(dummyFilePath, content);
+        const config = fromYAML(dummyFilePath, content);
         prhEngine.merge(config);
     });
     return prhEngine;
