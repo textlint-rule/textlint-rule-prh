@@ -39,11 +39,11 @@
     "textlint-rule-helper": "^2.3.1"
   },
   "devDependencies": {
-    "@textlint/legacy-textlint-core": "^14.0.4",
+    "@textlint/legacy-textlint-core": "^14.0.5",
     "lint-staged": "^15.2.8",
     "prettier": "^3.2.4",
-    "textlint": "14.0.4",
-    "textlint-scripts": "^14.0.4"
+    "textlint": "14.0.5",
+    "textlint-scripts": "^14.0.5"
   },
   "prettier": {
     "singleQuote": false,
