@@ -1351,7 +1351,7 @@
     fast-equals "^4.0.3"
     structured-source "^4.0.0"
 
-"@textlint/legacy-textlint-core@^14.1.0":
+"@textlint/legacy-textlint-core@^14.2.0":
   version "14.2.0"
   resolved "https://registry.yarnpkg.com/@textlint/legacy-textlint-core/-/legacy-textlint-core-14.2.0.tgz#746bb47387e18ed9366d77ed656785eaf5582c2f"
   integrity sha512-qDwi9dpF1G0fXixCXWJEOTZ997qPGq+0Utd/CdvTI+LYQZVvI29VOC8/BqxAu7LKy9mo4AFtEqEvT/bHvC3OKw==
@@ -3705,7 +3705,7 @@ textlint-rule-helper@^2.3.1:
     structured-source "^4.0.0"
     unist-util-visit "^2.0.3"
 
-textlint-scripts@^14.1.0:
+textlint-scripts@^14.2.0:
   version "14.2.0"
   resolved "https://registry.yarnpkg.com/textlint-scripts/-/textlint-scripts-14.2.0.tgz#373f5b31a08504b518916c09c3082a5de9008736"
   integrity sha512-QH9te7SSRuoGsxt4tSv3QXVmFb7mhRuK3GSrtTtMniIckxJAFKbsGlbz3euLSs1i/hDtRqoDak54kfR1+7j8RA==
