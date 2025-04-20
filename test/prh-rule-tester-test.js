@@ -27,6 +27,13 @@ tester.run("prh", rule, {
             }
         },
         {
+            text: "ディフォルト設定",
+            options: {
+                rulePaths: [__dirname + "/fixtures/rule.yaml"],
+                checkParagraph: false
+            }
+        },
+        {
             text: `${CODE_START_JS}\n" + "\n" + "\n" + "// JavaScript\n" + "var a = 1;\n${CODE_END}`,
             options: {
                 checkCodeComment: ["js"],
@@ -240,6 +247,28 @@ ${CODE_START_JS}`,
                     severity: 2,
                     fix: {
                         range: [2, 8],
+                        text: "デフォルト"
+                    }
+                }
+            ]
+        },
+        {
+            text: "ディフォルト設定",
+            output: "デフォルト設定",
+            options: {
+                rulePaths: [__dirname + "/fixtures/rule.yaml"]
+            },
+            errors: [
+                {
+                    type: "lint",
+                    ruleId: "prh",
+                    message: "ディフォルト => デフォルト\n表記をデフォルトに統一してください",
+                    index: 0,
+                    line: 1,
+                    column: 1,
+                    severity: 2,
+                    fix: {
+                        range: [0, 6],
                         text: "デフォルト"
                     }
                 }
