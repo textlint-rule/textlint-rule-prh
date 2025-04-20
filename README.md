@@ -52,6 +52,7 @@ You can use `~` as Home directory abbreviation.
 - `checkBlockQuote`(optional) : Check `BlockQuote` node type (default: `false`)
 - `checkEmphasis`(optional) : Check `Emphasis` node type (default: `false`)
 - `checkHeader`(optional) : Check `Header` node type (default: `true`)
+- `checkParagraph`(optional) : Check `Paragraph` node type (default: `true`)
 - `checkCodeComment`(optional) : Check `CodeBlock` node's comment for `lang` (default: `[]`)
     - Set `lang` array like `["<codeblock-lang>"]` for checking CodeBlock
     - Example: If you want to check JavaScript CodeBlock, set `{ "checkCodeComment": ["js", "javascript"] }` Options
