@@ -15,6 +15,7 @@ const defaultOptions = {
     checkBlockQuote: false,
     checkEmphasis: false,
     checkHeader: true,
+    checkParagraph: true,
     /**
      * Check CodeBlock text
      * Default: []
@@ -89,6 +90,9 @@ const createIgnoreNodeTypes = (options, Syntax) => {
     }
     if (!options.checkHeader) {
         nodeTypes.push(Syntax.Header);
+    }
+    if (!options.checkParagraph) {
+        nodeTypes.push(Syntax.Paragraph);
     }
     return nodeTypes;
 };
