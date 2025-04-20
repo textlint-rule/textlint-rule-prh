@@ -41,7 +41,7 @@
   "devDependencies": {
     "@textlint/legacy-textlint-core": "^14.6.0",
     "lint-staged": "^15.5.1",
-    "prettier": "^3.2.4",
+    "prettier": "^3.5.3",
     "textlint": "14.6.0",
     "textlint-scripts": "^14.6.0"
   },
@@ -62,5 +62,5 @@
       "pre-commit": "lint-staged"
     }
   },
-  "packageManager": "npm@10.9.2+sha512.8ab88f10f224a0c614cb717a7f7c30499014f77134120e9c1f0211ea3cf3397592cbe483feb38e0c4b3be1c54e347292c76a1b5edb94a3289d5448484ab8ac81"
+  "packageManager": "npm@11.3.0+sha512.96eb611483f49c55f7fa74df61b588de9e213f80a256728e6798ddc67176c7b07e4a1cfc7de8922422cbce02543714367037536955221fa451b0c4fefaf20c66"
 }
