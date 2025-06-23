@@ -39,11 +39,11 @@
     "textlint-rule-helper": "^2.3.1"
   },
   "devDependencies": {
-    "@textlint/legacy-textlint-core": "^14.6.0",
+    "@textlint/legacy-textlint-core": "^14.8.4",
     "lint-staged": "^15.5.2",
     "prettier": "^3.5.3",
-    "textlint": "14.6.0",
-    "textlint-scripts": "^14.6.0"
+    "textlint": "14.8.4",
+    "textlint-scripts": "^14.8.4"
   },
   "prettier": {
     "singleQuote": false,
@@ -62,5 +62,5 @@
       "pre-commit": "lint-staged"
     }
   },
-  "packageManager": "npm@11.3.0+sha512.96eb611483f49c55f7fa74df61b588de9e213f80a256728e6798ddc67176c7b07e4a1cfc7de8922422cbce02543714367037536955221fa451b0c4fefaf20c66"
+  "packageManager": "npm@11.4.2+sha512.f90c1ec8b207b625d6edb6693aef23dacb39c38e4217fe8c46a973f119cab392ac0de23fe3f07e583188dae9fd9108b3845ad6f525b598742bd060ebad60bff3"
 }
