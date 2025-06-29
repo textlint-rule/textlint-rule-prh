@@ -42,7 +42,7 @@
     "@textlint/legacy-textlint-core": "^14.8.4",
     "lint-staged": "^15.5.2",
     "prettier": "^3.5.3",
-    "textlint": "14.8.4",
+    "textlint": "15.1.0",
     "textlint-scripts": "^14.8.4"
   },
   "prettier": {
