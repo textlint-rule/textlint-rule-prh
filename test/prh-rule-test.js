@@ -2,7 +2,7 @@
 "use strict";
 import assert from "assert";
 import { TextLintCore } from "@textlint/legacy-textlint-core";
-import rule from "../src/textlint-rule-prh";
+import rule from "../dist/node.js";
 
 const textlint = new TextLintCore();
 describe("prh-rule-test", function () {
