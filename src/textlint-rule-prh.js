@@ -102,11 +102,11 @@ const createIgnoreNodeTypes = (options, Syntax) => {
  * @param {ChangeSet} changeSet
  * @param {string} str
  * @param {function({
- matchStartIndex: number,
- matchEndIndex: number,
- actual: string
- expected: string
- })}onChangeOfMatch
+ * matchStartIndex:number,
+ * matchEndIndex:number,
+ * actual:string
+ * expected:string
+ * }):void} onChangeOfMatch
  */
 const forEachChange = (changeSet, str, onChangeOfMatch) => {
     const sortedDiffs = changeSet.diffs.sort(function (a, b) {

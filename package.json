@@ -1,66 +1,68 @@
 {
-  "name": "textlint-rule-prh",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/textlint-rule/textlint-rule-prh.git"
-  },
-  "author": "azu",
-  "email": "azuciao@gmail.com",
-  "homepage": "https://github.com/textlint-rule/textlint-rule-prh",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/textlint-rule/textlint-rule-prh/issues"
-  },
-  "version": "6.1.0",
-  "description": "textlint rule for prh.",
-  "main": "lib/textlint-rule-prh.js",
-  "files": [
-    "lib",
-    "src"
-  ],
-  "directories": {
-    "test": "test"
-  },
-  "scripts": {
-    "build": "textlint-scripts build",
-    "watch": "textlint-scripts build --watch",
-    "prepublish": "npm run --if-present build",
-    "test": "textlint-scripts test",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
-    "prepare": "git config --local core.hooksPath .githooks"
-  },
-  "keywords": [
-    "textlint",
-    "prh"
-  ],
-  "dependencies": {
-    "@babel/parser": "^7.28.0",
-    "prh": "^5.4.4",
-    "textlint-rule-helper": "^2.3.1"
-  },
-  "devDependencies": {
-    "@textlint/legacy-textlint-core": "^15.2.1",
-    "lint-staged": "^15.5.2",
-    "prettier": "^3.5.3",
-    "textlint": "15.2.1",
-    "textlint-scripts": "^15.2.1"
-  },
-  "prettier": {
-    "singleQuote": false,
-    "printWidth": 120,
-    "tabWidth": 4,
-    "trailingComma": "none"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,css}": [
-      "prettier --write"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "post-commit": "git reset",
-      "pre-commit": "lint-staged"
-    }
-  },
-  "packageManager": "npm@11.5.2+sha512.aac1241cfc3f41dc38780d64295c6c6b917a41e24288b33519a7b11adfc5a54a5f881c642d7557215b6c70e01e55655ed7ba666300fd0238bc75fb17478afaf3"
+    "name": "textlint-rule-prh",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/textlint-rule/textlint-rule-prh.git"
+    },
+    "author": "azu",
+    "email": "azuciao@gmail.com",
+    "homepage": "https://github.com/textlint-rule/textlint-rule-prh",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/textlint-rule/textlint-rule-prh/issues"
+    },
+    "version": "6.1.0",
+    "description": "textlint rule for prh.",
+    "main": "lib/textlint-rule-prh.js",
+    "files": [
+        "lib",
+        "src"
+    ],
+    "directories": {
+        "test": "test"
+    },
+    "scripts": {
+        "build": "textlint-scripts build",
+        "watch": "textlint-scripts build --watch",
+        "prepublish": "npm run --if-present build",
+        "test": "mocha --require textlint-scripts/register \"test/**/*.js\"",
+        "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
+        "prepare": "git config --local core.hooksPath .githooks"
+    },
+    "keywords": [
+        "textlint",
+        "prh"
+    ],
+    "dependencies": {
+        "@babel/parser": "^7.28.3",
+        "@types/mocha": "^10.0.10",
+        "@types/node": "^24.3.0",
+        "prh": "^5.4.4",
+        "textlint-rule-helper": "^2.5.0"
+    },
+    "devDependencies": {
+        "@textlint/legacy-textlint-core": "^15.2.1",
+        "lint-staged": "^16.1.5",
+        "prettier": "^3.6.2",
+        "textlint": "15.2.1",
+        "textlint-scripts": "^15.2.1"
+    },
+    "prettier": {
+        "singleQuote": false,
+        "printWidth": 120,
+        "tabWidth": 4,
+        "trailingComma": "none"
+    },
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx,css}": [
+            "prettier --write"
+        ]
+    },
+    "husky": {
+        "hooks": {
+            "post-commit": "git reset",
+            "pre-commit": "lint-staged"
+        }
+    },
+    "packageManager": "npm@11.5.2+sha512.aac1241cfc3f41dc38780d64295c6c6b917a41e24288b33519a7b11adfc5a54a5f881c642d7557215b6c70e01e55655ed7ba666300fd0238bc75fb17478afaf3"
 }
