@@ -13,7 +13,7 @@
   },
   "version": "6.1.0",
   "description": "textlint rule for prh.",
-  "main": "lib/textlint-rule-prh.js",
+  "main": "lib/node.js",
   "files": [
     "lib",
     "src"
@@ -42,6 +42,7 @@
   },
   "devDependencies": {
     "@textlint/legacy-textlint-core": "^15.2.1",
+    "@textlint/types": "^15.2.1",
     "lint-staged": "^16.1.5",
     "prettier": "^3.6.2",
     "textlint": "15.2.1",
