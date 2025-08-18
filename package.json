@@ -25,7 +25,7 @@
     "build": "textlint-scripts build",
     "watch": "textlint-scripts build --watch",
     "prepublish": "npm run --if-present build",
-    "test": "mocha --require textlint-scripts/register \"test/**/*.js\"",
+    "test": "textlint-scripts test",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepare": "git config --local core.hooksPath .githooks"
   },
