@@ -3,7 +3,7 @@
 import assert from "assert";
 import fs from "fs";
 import { TextLintCore } from "@textlint/legacy-textlint-core";
-import rule from "../src/textlint-rule-prh";
+import rule from "../src/node";
 import path from "path";
 
 describe(".textlintrc test", function () {

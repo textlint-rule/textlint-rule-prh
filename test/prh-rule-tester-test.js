@@ -1,6 +1,6 @@
 import TextLintTester from "textlint-tester";
 // rule
-import rule from "../src/textlint-rule-prh";
+import rule from "../src/node";
 const tester = new TextLintTester();
 // ruleName, rule, { valid, invalid }
 const CODE_START_JS = "```js";
