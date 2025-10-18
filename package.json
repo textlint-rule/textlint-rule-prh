@@ -36,16 +36,16 @@
   "dependencies": {
     "@babel/parser": "^7.28.4",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^24.7.1",
+    "@types/node": "^24.7.2",
     "prh": "^5.4.4",
     "textlint-rule-helper": "^2.5.0"
   },
   "devDependencies": {
-    "@textlint/legacy-textlint-core": "^15.2.2",
-    "lint-staged": "^16.2.3",
+    "@textlint/legacy-textlint-core": "^15.2.3",
+    "lint-staged": "^16.2.4",
     "prettier": "^3.6.2",
-    "textlint": "15.2.2",
-    "textlint-scripts": "^15.2.2"
+    "textlint": "15.2.3",
+    "textlint-scripts": "^15.2.3"
   },
   "prettier": {
     "singleQuote": false,
