@@ -36,13 +36,13 @@
   "dependencies": {
     "@babel/parser": "^7.28.4",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^24.8.1",
+    "@types/node": "^24.9.0",
     "prh": "^5.4.4",
     "textlint-rule-helper": "^2.5.0"
   },
   "devDependencies": {
     "@textlint/legacy-textlint-core": "^15.2.3",
-    "lint-staged": "^16.2.4",
+    "lint-staged": "^16.2.5",
     "prettier": "^3.6.2",
     "textlint": "15.2.3",
     "textlint-scripts": "^15.2.3"
