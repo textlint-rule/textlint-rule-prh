@@ -36,7 +36,7 @@
   "dependencies": {
     "@babel/parser": "^7.28.5",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^24.10.4",
+    "@types/node": "^24.10.6",
     "prh": "^5.4.4",
     "textlint-rule-helper": "^2.5.0"
   },
