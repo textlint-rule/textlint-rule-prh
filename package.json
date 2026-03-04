@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@textlint/legacy-textlint-core": "^15.5.2",
-    "lint-staged": "^16.3.0",
+    "lint-staged": "^16.3.1",
     "prettier": "^3.6.2",
     "textlint": "15.5.2",
     "textlint-scripts": "^15.5.2"
