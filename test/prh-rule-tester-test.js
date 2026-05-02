@@ -20,6 +20,13 @@ tester.run("prh", rule, {
             }
         },
         {
+            text: "![jQuery](/path/to/logo.png)",
+            options: {
+                rulePaths: [__dirname + "/fixtures/rule.yaml"],
+                checkImage: true
+            }
+        },
+        {
             text: "# ディフォルト設定",
             options: {
                 rulePaths: [__dirname + "/fixtures/rule.yaml"],
@@ -179,6 +186,29 @@ ${CODE_START_JS}`,
                     severity: 2,
                     fix: {
                         range: [1, 7],
+                        text: "jQuery"
+                    }
+                }
+            ]
+        },
+        {
+            text: "![jquery](/path/to/logo.png)",
+            output: "![jQuery](/path/to/logo.png)",
+            options: {
+                rulePaths: [__dirname + "/fixtures/rule.yaml"],
+                checkImage: true
+            },
+            errors: [
+                {
+                    type: "lint",
+                    ruleId: "prh",
+                    message: "jquery => jQuery",
+                    index: 2,
+                    line: 1,
+                    column: 3,
+                    severity: 2,
+                    fix: {
+                        range: [2, 10],
                         text: "jQuery"
                     }
                 }
