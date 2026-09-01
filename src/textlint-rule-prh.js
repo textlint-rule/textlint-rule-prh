@@ -12,6 +12,7 @@ const untildify = (filePath) => {
 };
 const defaultOptions = {
     checkLink: false,
+    checkImage: false,
     checkBlockQuote: false,
     checkEmphasis: false,
     checkHeader: true,
@@ -81,6 +82,9 @@ const createIgnoreNodeTypes = (options, Syntax) => {
     const nodeTypes = [];
     if (!options.checkLink) {
         nodeTypes.push(Syntax.Link);
+    }
+    if (!options.checkImage) {
+        nodeTypes.push(Syntax.Image);
     }
     if (!options.checkBlockQuote) {
         nodeTypes.push(Syntax.BlockQuote);
@@ -290,6 +294,33 @@ function reporter(context, userOptions = {}) {
                     report(node, new RuleError(error.message));
                 }
             }
+        },
+        [Syntax.Image](node) {
+            if (!options.checkImage) {
+                return;
+            }
+            const text = node.alt;
+            const n_index_offset = 2;
+            const dummyFilePath = "";
+            const makeChangeSet = prhEngine.makeChangeSet(dummyFilePath, text);
+            forEachChange(makeChangeSet, text, ({ matchStartIndex, matchEndIndex, actual, expected, prh }) => {
+                // If result is not changed, should not report
+                if (actual === expected) {
+                    return;
+                }
+                const suffix = prh !== null ? "\n" + prh : "";
+                const messages = actual + " => " + expected + suffix;
+                report(
+                    node,
+                    new RuleError(messages, {
+                        index: matchStartIndex + n_index_offset,
+                        fix: fixer.replaceTextRange(
+                            [matchStartIndex + n_index_offset, matchEndIndex + n_index_offset],
+                            expected
+                        )
+                    })
+                );
+            });
         }
     };
 }
