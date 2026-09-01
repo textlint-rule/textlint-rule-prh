@@ -37,7 +37,7 @@
     "@babel/parser": "^7.29.8",
     "@types/mocha": "^10.0.10",
     "@types/node": "^24.13.3",
-    "prh": "^5.4.4",
+    "prh": "^6.1.0",
     "textlint-rule-helper": "^2.5.0"
   },
   "devDependencies": {
