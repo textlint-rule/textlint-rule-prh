@@ -34,7 +34,7 @@
     "prh"
   ],
   "dependencies": {
-    "@babel/parser": "^7.29.9",
+    "@babel/parser": "^8.0.7",
     "@types/mocha": "^10.0.10",
     "@types/node": "^24.19.1",
     "prh": "^5.4.4",
