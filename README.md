@@ -49,6 +49,8 @@ You can use `~` as Home directory abbreviation.
 ```
 
 - `checkLink`(optional) : Check `Link` node type (default: `false`)
+- `checkImage`(optional) : Check `Image` node type (default: `false`)
+    - Only alt text of image is scoped
 - `checkBlockQuote`(optional) : Check `BlockQuote` node type (default: `false`)
 - `checkEmphasis`(optional) : Check `Emphasis` node type (default: `false`)
 - `checkHeader`(optional) : Check `Header` node type (default: `true`)
