@@ -1,0 +1,4 @@
+# Release workflow review owners
+/.github/workflows/release.yml @azu
+/.github/workflows/create-release-pr.yml @azu
+/.github/CODEOWNERS @azu
