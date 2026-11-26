@@ -41,7 +41,7 @@
     "textlint-rule-helper": "^2.5.0"
   },
   "devDependencies": {
-    "@textlint/legacy-textlint-core": "^15.8.0",
+    "@textlint/legacy-textlint-core": "^16.1.3",
     "lint-staged": "^16.4.0",
     "prettier": "^3.6.2",
     "textlint": "15.8.0",
